@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -29,6 +30,9 @@ public class Application {
         try {
             metadata = new Metadata("Config.ini");
             resourceMannager = new ResourceMannager(metadata.ResourceFolder + "/" + metadata.MainArchiveFile);
+            tempFolder = new File(metadata.ResourceFolder + "/.temp");
+            tempFolder.mkdirs();
+            Files.setAttribute(tempFolder.toPath(), "dos:hidden", true);
 
 
             display = new Display();
@@ -41,6 +45,7 @@ public class Application {
                 glfwSwapBuffers(display.getWindow());
                 glfwPollEvents();
             }
+            tempFolder.delete();
             display.Close(OnExit);
         } catch (Exception e) {
             Utils.CrashApp(-1, e);
