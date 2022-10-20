@@ -7,6 +7,7 @@ import BluminEngine5.Rendering.Master.Model;
 import BluminEngine5.Rendering.Shaders.Shader;
 import BluminEngine5.Rendering.Texture;*/
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Editor.Componants.Audio.Legacy.AudioFile;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.Archive;
@@ -34,7 +35,7 @@ public class ResourceMannager {
     //private HashMap<String, Shader> shadersbacth = new HashMap<String, Shader>();
     private HashMap<String, Texture> texturesbacth = new HashMap<String, Texture>();
     private HashMap<String, Mesh> meshsbacth = new HashMap<String, Mesh>();
-    //private HashMap<String, AudioFile> audiobatch = new HashMap<String, AudioFile>();
+    private HashMap<String, AudioFile> audiobatch = new HashMap<String, AudioFile>();
 
     private HashMap<String, Model> modelssbacth = new HashMap<String, Model>();
 
@@ -87,7 +88,7 @@ public class ResourceMannager {
             return texturesbacth.get(location);
         }
     }
-/*
+
     public AudioFile GetAudio(int file, int Archive) {
         try {
             var arch = archive.GeFileFromArchive(file, Archive);
@@ -107,7 +108,7 @@ public class ResourceMannager {
             Debug.logException("Could not load the wav file",e);
             return null;
         }
-    }*/
+    }
 
     public Mesh GetMesh(int file, int Archive) {
         try{

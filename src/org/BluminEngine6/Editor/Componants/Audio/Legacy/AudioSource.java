@@ -1,9 +1,11 @@
 package org.BluminEngine6.Editor.Componants.Audio.Legacy;
 
-import BluminEngine5.Application;
-import BluminEngine5.Componant.Component;
-import BluminEngine5.Utils.Debuging.Debug;
+
+import org.BluminEngine6.Application;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.lwjgl.openal.AL10;
+
+import org.BluminEngine6.Object.Component;
 
 import static org.lwjgl.openal.AL10.*;
 
@@ -17,7 +19,7 @@ public class AudioSource extends Component {
 
     public AudioSource(int file, int archive) {
         try {
-            Audiofile = Application.getResourceManager().GetAudio(file, archive);
+            Audiofile = Application.getResourceMannager().GetAudio(file, archive);
             if(Mixer.instance == null) {
                 Debug.logError("Mixer is required in the scene for audio playing");
                 return;
@@ -35,7 +37,7 @@ public class AudioSource extends Component {
 
     @Override
     public void Update() {
-        AL10.alSource3f(id, AL_POSITION, Parent.transform.position.x,Parent.transform.position.y,Parent.transform.position.z);
+        //AL10.alSource3f(id, AL_POSITION, Parent.transform.position.x,Parent.transform.position.y,Parent.transform.position.z);
         AL10.alSourcef(id, AL_MAX_DISTANCE, max_distance);
         AL10.alSourcef(id, AL_REFERENCE_DISTANCE, Distance);
         AL10.alSourcef(id, AL_ROLLOFF_FACTOR, rolloff);

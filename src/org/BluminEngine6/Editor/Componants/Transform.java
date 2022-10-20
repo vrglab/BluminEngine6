@@ -1,13 +1,13 @@
 package org.BluminEngine6.Editor.Componants;
 
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
-import org.BluminEngine6.Object.Componant;
+import org.BluminEngine6.Object.Component;
 
 import javax.vecmath.Quat4f;
 
 import java.io.Serializable;
 
-public class Transform extends Componant implements Serializable {
+public class Transform extends Component implements Serializable {
     public Vector3 position = Vector3.Zero;
     public Vector3 rotation = Vector3.Zero;
     public Vector3 scale = Vector3.Zero;

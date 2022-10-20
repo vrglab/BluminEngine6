@@ -1,9 +1,9 @@
 package org.BluminEngine6.Editor.Componants.Audio.Legacy;
 
-import BluminEngine5.Componant.Component;
-import BluminEngine5.SceneMannagement.SceneManager;
-import BluminEngine5.Utils.Debuging.Debug;
-import BluminEngine5.Utils.Utils;
+
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Utils;
+import org.BluminEngine6.Object.Component;
 import org.lwjgl.openal.*;
 
 import java.nio.IntBuffer;
@@ -56,10 +56,10 @@ public class Mixer extends Component {
             Utils.CrashApp(-45, "No Valid OpenAL library found");
         }
 
-        Listener = SceneManager.GetCurent().GetActiveScene().ActiveCamera.getComponant(listener.class);
+        ///Listener = SceneManager.GetCurent().GetActiveScene().ActiveCamera.getComponant(listener.class);
         if(Listener == null) {
             Debug.log("Should no longer be null");
-            Listener =  SceneManager.GetCurent().GetActiveScene().ActiveCamera.RegisterComponant(new listener());
+            //Listener =  SceneManager.GetCurent().GetActiveScene().ActiveCamera.RegisterComponant(new listener());
             if(Listener == null) {
                 Utils.CrashApp(-50, "Mixer failed to find Listener");
             }

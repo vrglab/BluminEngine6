@@ -1,7 +1,8 @@
 package org.BluminEngine6.Editor.Componants.Audio.Legacy;
 
-import BluminEngine5.Utils.Annotations.MustCreate;
-import BluminEngine5.Utils.Utils;
+
+import org.BluminEngine6.Legacy.Utils.Annotations.MustCreate;
+import org.BluminEngine6.Legacy.Utils.Utils;
 import org.apache.commons.io.FilenameUtils;
 
 import javax.sound.sampled.AudioFormat;
