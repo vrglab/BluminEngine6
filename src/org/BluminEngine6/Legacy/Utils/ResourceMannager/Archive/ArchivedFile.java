@@ -3,7 +3,7 @@ package org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive;
 import java.io.Serializable;
 import java.util.Base64;
 
-import static BluminEngine5.Utils.ResourceMannager.Archive.ArchiveMannager.NULL;
+import static org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchiveMannager.NULL;
 
 public class ArchivedFile implements Serializable {
     public String FileName;

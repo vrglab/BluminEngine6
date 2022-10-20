@@ -1,6 +1,6 @@
 package org.BluminEngine6.Legacy.Utils.Math;
 
-import BluminEngine5.Utils.Version;
+import org.BluminEngine6.Legacy.Utils.Version;
 
 
 public class Math {
