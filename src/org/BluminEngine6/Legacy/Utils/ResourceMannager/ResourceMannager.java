@@ -47,8 +47,7 @@ public class ResourceMannager {
     throws IOException {
         try{
             UUID id = UUID.randomUUID();
-            String path = Application.getMetadata().ResourceFolder
-                    +"/Temp/Temp " + id.toString() + " " + file.FileName + "." + file.Extension;
+            String path = Application.getTempFolder().getAbsolutePath() + "/Temp " + id.toString() + " " + file.FileName + "." + file.Extension;
             File f = Files.createFile(Paths.get(path)).toFile();
             FileUtils.writeByteArrayToFile(f, file.GetDecodedData());
             return f;
@@ -63,7 +62,7 @@ public class ResourceMannager {
         try{
             archive = ArchiveMannager.Decompress(file);
         }catch (Exception e) {
-            Debug.logError(e.getMessage());
+            Debug.logException(e);
         }
     }
 /*
@@ -79,7 +78,7 @@ public class ResourceMannager {
 */
     public Texture GetTexture(int file, int Archive) {
         var arch = archive.GeFileFromArchive(file, Archive);
-        var location = Application.getMetadata().ResourceFolder +"/Temp/Temp " + arch.FileName + "." + arch.Extension;
+        var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
         if(!texturesbacth.containsKey(location)) {
             var dat = new Texture(arch);
             texturesbacth.put(location,dat);
@@ -115,7 +114,7 @@ public class ResourceMannager {
             var arch = archive.GeFileFromArchive(file, Archive);
             var f = LoadIntoTempFile(arch);
 
-            var location = Application.getMetadata().ResourceFolder +"/Temp/Temp " + arch.FileName + "." + arch.Extension;
+            var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
 
             var shaderLocation = f.getAbsolutePath();
 
@@ -139,7 +138,7 @@ public class ResourceMannager {
 
             f = LoadIntoTempFile(arch);
 
-            var location = Application.getMetadata().ResourceFolder +"/Temp/Temp " + arch.FileName + "." + arch.Extension;
+            var location = Application.getTempFolder().getAbsolutePath() + "/Temp " + arch.FileName + "." + arch.Extension;
 
             if(!modelssbacth.containsKey(location)) {
 
@@ -190,7 +189,7 @@ public class ResourceMannager {
 
         Archive us  = am.CreateArchive(root.Id,FilenameUtils.getBaseName(p.getAbsolutePath()));
 
-        Debug.log(root.name + "_ us name:" + us.name + "_ root id: " + root.Id + "_ us id: " + us.Id + "_ Parent id: " + parent + "_ Requested directory: " + p.getPath());
+
         for (File d: p.listFiles()) {
             if(d.isDirectory()) {
                 shush(am, d, us.Id+1);

@@ -1,6 +1,7 @@
 package org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive;
 
 
+import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -168,16 +169,17 @@ public class ArchiveMannager implements Serializable{
 
     public static ArchiveMannager Decompress(String file) throws Exception{
         UUID id = UUID.randomUUID();
+        String p = Application.getTempFolder().getAbsolutePath() + "/temp " + id.toString() +".baf";
         FileInputStream fis = new FileInputStream(file+".baf");
-        FileOutputStream fos = new FileOutputStream("Res/temp " + id.toString() +".baf");
+        FileOutputStream fos = new FileOutputStream(p);
         InflaterInputStream iis = new InflaterInputStream(fis);
         fos.write(iis.readAllBytes());
         fos.close();
-        FileInputStream fileInputStream = new FileInputStream("Res/temp " + id.toString() +".baf");
+        FileInputStream fileInputStream = new FileInputStream(p);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         ArchiveMannager r =  (ArchiveMannager) objectInputStream.readObject();
         objectInputStream.close();
-        Files.delete(Paths.get("Res/temp " + id.toString() +".baf"));
+        Files.delete(Paths.get(p));
         return r;
     }
 

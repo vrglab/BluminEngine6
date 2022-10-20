@@ -29,10 +29,13 @@ public class Application {
     public static void Run(Resolution res,DisplayMode dm) {
         try {
             metadata = new Metadata("Config.ini");
-            resourceMannager = new ResourceMannager(metadata.ResourceFolder + "/" + metadata.MainArchiveFile);
+
             tempFolder = new File(metadata.ResourceFolder + "/.temp");
             tempFolder.mkdirs();
             Files.setAttribute(tempFolder.toPath(), "dos:hidden", true);
+
+            resourceMannager = new ResourceMannager(metadata.MainArchiveFile);
+
 
 
             display = new Display();
