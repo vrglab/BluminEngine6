@@ -1,6 +1,7 @@
 package org.BluminEngine6.Editor.SceneManagment;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Editor.Componants.Camera;
 import org.BluminEngine6.Legacy.Utils.objActionData;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Object.Object;
@@ -11,10 +12,48 @@ import java.util.Map;
 public abstract class Scene extends Object {
     protected objActionData logicsData = new objActionData();
     private HashMap<Integer, BluminBehaviour> gameObjects = new HashMap<>();
+    public BluminBehaviour mainCamera = new BluminBehaviour() {
 
+        Camera main = new Camera();
 
+        @Override
+        public void SceneLoad() {
+
+        }
+
+        @Override
+        public void Destroy() {
+
+        }
+
+        @Override
+        public void Update() {
+
+        }
+
+        @Override
+        public void OnRender() {
+
+        }
+
+        @Override
+        public void Init() {
+
+        }
+
+        @Override
+        public void PreInit() {
+            RegisterComponant(main);
+        }
+
+        @Override
+        public void OnExit() {
+
+        }
+    };
 
     public Scene() {
+        RegisterGameObject(mainCamera);
         logicsData.OnDestroy = () -> {
             for (BluminBehaviour bb: gameObjects.values()) {
                 if(bb.Active){

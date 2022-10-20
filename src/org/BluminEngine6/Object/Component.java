@@ -12,6 +12,45 @@ public abstract class Component extends Object{
 
     public Component() {
         tag = Application.getTagMannager().GetTag(2);
+
+        LogicsData.OnDestroy = () -> {
+            Destroy();
+
+        };
+
+        LogicsData.OnExit = () -> {
+            LogicsData.OnDestroy.Run();
+            OnExit();
+
+        };
+
+        LogicsData.OnPreInit = () -> {
+            PreInit();
+
+        };
+
+        LogicsData.OnRender = () -> {
+            OnRender();
+
+        };
+
+        LogicsData.OnSceneLoad = () -> {
+            SceneLoad();
+
+        };
+
+        LogicsData.OnUpdate = () -> {
+
+            Update();
+
+        };
+
+        LogicsData.OnStart = () -> {
+
+            Init();
+
+        };
+
     }
 
 

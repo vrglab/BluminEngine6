@@ -19,40 +19,67 @@ public abstract class BluminBehaviour extends Object{
 
             logicsData.OnDestroy = () -> {
                 Destroy();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnDestroy.Run();
+                    }
+                }
             };
 
             logicsData.OnExit = () -> {
                 logicsData.OnDestroy.Run();
                 OnExit();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnExit.Run();
+                    }
+                }
             };
 
             logicsData.OnPreInit = () -> {
-                if(Active) {
                     PreInit();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnPreInit.Run();
+                    }
                 }
             };
 
             logicsData.OnRender = () -> {
-                if(Active) {
                     OnRender();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnRender.Run();
+                    }
                 }
             };
 
             logicsData.OnSceneLoad = () -> {
-                if(Active) {
                     SceneLoad();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnSceneLoad.Run();
+                    }
                 }
             };
 
             logicsData.OnUpdate = () -> {
-                if(Active) {
+
                     Update();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnUpdate.Run();
+                    }
                 }
             };
 
             logicsData.OnStart = () -> {
-                if(Active) {
+
                     Init();
+                for (Component c: AttachedComponants) {
+                    if(c.Active) {
+                        c.LogicsData.OnStart.Run();
+                    }
                 }
             };
 

@@ -1,11 +1,11 @@
 package org.BluminEngine6.Editor.Componants;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Object.Component;
 
 public class Camera extends Component {
-
 
     public float fov = 90;
     public float FarPlane = 10000.0f;
@@ -13,6 +13,7 @@ public class Camera extends Component {
     private Matrix projectionMatrix;
 
     public Camera() {
+        tag = Application.getTagMannager().GetTag(1);
         transform.position.z = 0;
     }
 
