@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BluminEngine6.iml" filepath="$PROJECT_DIR$/BluminEngine6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExampleGame/ExampleGame.iml" filepath="$PROJECT_DIR$/ExampleGame/ExampleGame.iml" />
     </modules>
   </component>
 </project>
