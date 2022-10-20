@@ -18,7 +18,7 @@ public class Metadata {
 
     public Metadata(String file) throws IOException {
         if (!Utils.FileExists(file)) {
-            throw new IOException("File " + file + " Not found");
+            throw new IOException("Config file " + file + " Not found");
         }
 
         Wini ini = new Wini(new File(file));

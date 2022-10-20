@@ -1,16 +1,24 @@
 package org.BluminEngine6.Legacy.Utils;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Math.Vector2;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
+import org.BluminEngine6.Render.Mesh;
+import org.BluminEngine6.Render.Model;
+import org.BluminEngine6.Render.Vertex;
+import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.assimp.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class ObjLoader {
 
 
-/*
+
     public static Mesh LoadFile(String obj) {
         AIScene scene = Assimp.aiImportFile(obj, Assimp.aiProcess_JoinIdenticalVertices | Assimp.aiProcess_Triangulate );
 
@@ -104,7 +112,7 @@ public class ObjLoader {
 
     public static Model LoadModel(ArchivedFile obj) {
         try{
-            File f = Application.getResourceManager().LoadIntoTempFile(obj);
+            File f = Application.getResourceMannager().LoadIntoTempFile(obj);
             if(!FilenameUtils.getExtension(f.getAbsolutePath()).equals("bmd")) {
                 Debug.log(FilenameUtils.getExtension(f.getAbsolutePath()));
                 Debug.logException(new Exception( f.getAbsolutePath() + " is not a BluminEngine Model File"));
@@ -119,7 +127,7 @@ public class ObjLoader {
             return null;
         }
     }
-*/
+
     private static AIScene GetDtaFromFile(ArchivedFile file){
         try{
             File f = Application.getResourceMannager().LoadIntoTempFile(file);

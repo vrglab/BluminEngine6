@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static BluminEngine5.Utils.ResourceMannager.Archive.ArchiveMannager.NULL;
+import static org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchiveMannager.NULL;
+
 
 public class Archive implements Serializable {
     public String name;

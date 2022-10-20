@@ -13,6 +13,8 @@ import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.Archive;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchiveMannager;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.Utils;
+import org.BluminEngine6.Render.Mesh;
+import org.BluminEngine6.Render.Model;
 import org.BluminEngine6.Render.Texture;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -29,10 +31,10 @@ public class ResourceMannager {
 
     public ArchiveMannager archive = new ArchiveMannager();
 
-    private HashMap<String, Shader> shadersbacth = new HashMap<String, Shader>();
+    //private HashMap<String, Shader> shadersbacth = new HashMap<String, Shader>();
     private HashMap<String, Texture> texturesbacth = new HashMap<String, Texture>();
     private HashMap<String, Mesh> meshsbacth = new HashMap<String, Mesh>();
-    private HashMap<String, AudioFile> audiobatch = new HashMap<String, AudioFile>();
+    //private HashMap<String, AudioFile> audiobatch = new HashMap<String, AudioFile>();
 
     private HashMap<String, Model> modelssbacth = new HashMap<String, Model>();
 
@@ -64,7 +66,7 @@ public class ResourceMannager {
             Debug.logError(e.getMessage());
         }
     }
-
+/*
     public Shader GetShader(String shaderLocation) {
         if(!shadersbacth.containsKey(shaderLocation)) {
             var dat = new Shader(shaderLocation);
@@ -74,7 +76,7 @@ public class ResourceMannager {
             return shadersbacth.get(shaderLocation);
         }
     }
-
+*/
     public Texture GetTexture(int file, int Archive) {
         var arch = archive.GeFileFromArchive(file, Archive);
         var location = Application.getMetadata().ResourceFolder +"/Temp/Temp " + arch.FileName + "." + arch.Extension;
@@ -86,7 +88,7 @@ public class ResourceMannager {
             return texturesbacth.get(location);
         }
     }
-
+/*
     public AudioFile GetAudio(int file, int Archive) {
         try {
             var arch = archive.GeFileFromArchive(file, Archive);
@@ -106,7 +108,8 @@ public class ResourceMannager {
             Debug.logException("Could not load the wav file",e);
             return null;
         }
-    }
+    }*/
+
     public Mesh GetMesh(int file, int Archive) {
         try{
             var arch = archive.GeFileFromArchive(file, Archive);

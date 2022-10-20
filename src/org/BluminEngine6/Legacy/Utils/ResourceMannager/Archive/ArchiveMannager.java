@@ -1,6 +1,7 @@
 package org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive;
 
-import BluminEngine5.Utils.Debuging.Debug;
+
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
@@ -41,7 +42,7 @@ public class ArchiveMannager implements Serializable{
             af.fileData = encodedString;
             af.ID = NULL;
         } catch (IOException e) {
-            Debug.logError(e.getMessage());
+            Debug.logException(e);
         }
         return  af;
     }
@@ -161,7 +162,7 @@ public class ArchiveMannager implements Serializable{
             Files.delete(Paths.get("Res/temp " +id.toString()  +".baf"));
 
         }catch (Exception e) {
-            Debug.logError(e.getMessage());
+            Debug.logException(e);
         }
     }
 
