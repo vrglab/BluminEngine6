@@ -1,11 +1,13 @@
 package org.BluminEngine6;
 
+import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
 import org.BluminEngine6.Legacy.Utils.Metadata;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Legacy.Utils.Utils;
+import org.BluminEngine6.Object.Tags.TagMannager;
 import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
 import org.BluminEngine6.Render.Resolution;
@@ -22,10 +24,13 @@ public class Application {
     public static Action<IAction> Start = new Action<>();
     public static Action<IAction> Awake = new Action<>();
     public static Action<IAction> OnExit = new Action<>();
-    private static Metadata metadata;
-    private static ResourceMannager resourceMannager;
+
+
+    static Metadata metadata;
+    static ResourceMannager resourceMannager;
     static Display display;
     static File tempFolder;
+    static TagMannager tagMannager = new TagMannager();;
 
     public static void Run(Resolution res,DisplayMode dm) {
         try {
@@ -39,10 +44,13 @@ public class Application {
             resourceMannager = new ResourceMannager(metadata.MainArchiveFile);
 
 
-
+            Debug.log("Opening game: " + metadata.GameName + " Version " + metadata.gameVersion);
             display = new Display();
             display.CreateWindow(metadata.GameName, res, dm);
+
+
             Awake.Invoke();
+
 
             Start.Invoke();
             while (!glfwWindowShouldClose(display.getWindow()) ) {
@@ -52,6 +60,7 @@ public class Application {
                 glfwSwapBuffers(display.getWindow());
                 glfwPollEvents();
             }
+            Debug.log("Closing BluminEngine6 0.0.1.0_DevSystem");
             tempFolder.delete();
             display.Close(OnExit);
         } catch (Exception e) {
@@ -70,5 +79,13 @@ public class Application {
 
     public static File getTempFolder() {
         return tempFolder;
+    }
+
+    public static Display getDisplay() {
+        return display;
+    }
+
+    public static TagMannager getTagMannager() {
+        return tagMannager;
     }
 }

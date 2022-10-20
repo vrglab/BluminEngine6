@@ -1,6 +1,7 @@
 package org.BluminEngine6.Object;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Editor.Componants.Transform;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.objActionData;
 
@@ -9,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BluminBehaviour extends Object{
-        protected objActionData logicsData = new objActionData();
+        public objActionData logicsData = new objActionData();
         private List<Component> AttachedComponants = new ArrayList<>();
+
+        public Transform transform = Transform.DefaultZero;
 
         protected BluminBehaviour() {
 
@@ -53,10 +56,7 @@ public abstract class BluminBehaviour extends Object{
                 }
             };
 
-            Application.Awake.addListener(logicsData.OnPreInit);
-            Application.Start.addListener(logicsData.OnStart);
-            Application.Update.addListener(logicsData.OnUpdate);
-            Application.OnExit.addListener(logicsData.OnExit);
+            tag = Application.getTagMannager().GetTag(0);
         }
 
     public <t extends Component> t RegisterComponant(t component) {

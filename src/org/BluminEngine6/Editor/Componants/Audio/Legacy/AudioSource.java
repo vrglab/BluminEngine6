@@ -37,7 +37,7 @@ public class AudioSource extends Component {
 
     @Override
     public void Update() {
-        //AL10.alSource3f(id, AL_POSITION, Parent.transform.position.x,Parent.transform.position.y,Parent.transform.position.z);
+        AL10.alSource3f(id, AL_POSITION, Parent.transform.position.x,Parent.transform.position.y,Parent.transform.position.z);
         AL10.alSourcef(id, AL_MAX_DISTANCE, max_distance);
         AL10.alSourcef(id, AL_REFERENCE_DISTANCE, Distance);
         AL10.alSourcef(id, AL_ROLLOFF_FACTOR, rolloff);

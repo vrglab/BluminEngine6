@@ -27,7 +27,7 @@ public class Debug{
     };
 
     private static void OnExit() {
-        var path = "Res/log.log";
+        var path = Application.getMetadata().ResourceFolder + "/log.log";
 
         try {
 
