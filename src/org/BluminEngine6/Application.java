@@ -1,5 +1,6 @@
 package org.BluminEngine6;
 
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
 import org.BluminEngine6.Legacy.Utils.Metadata;
@@ -28,6 +29,7 @@ public class Application {
 
     public static void Run(Resolution res,DisplayMode dm) {
         try {
+            Debug.log("Starting BluminEngine6 0.0.1.0_DevSystem");
             metadata = new Metadata("Config.ini");
 
             tempFolder = new File(metadata.ResourceFolder + "/.temp");
@@ -40,7 +42,9 @@ public class Application {
 
             display = new Display();
             display.CreateWindow(metadata.GameName, res, dm);
+            Awake.Invoke();
 
+            Start.Invoke();
             while (!glfwWindowShouldClose(display.getWindow()) ) {
                 Update.Invoke();
                 //renderer.Render();
