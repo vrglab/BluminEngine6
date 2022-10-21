@@ -20,7 +20,6 @@ public class ArchiveFolder implements Serializable {
     private Map<Integer, ArchiveFile> files = new HashMap<>();
     private int id = NULL, ParentFolderId = NULL;
     public String name = "";
-
     private final AtomicInteger FileCounter = new AtomicInteger();
     private final AtomicInteger FolderCounter = new AtomicInteger();
 
@@ -50,8 +49,18 @@ public class ArchiveFolder implements Serializable {
         File f = new File(directory);
         String abPath = f.getAbsolutePath();
         int id = FileCounter.getAndIncrement();
+        ArchiveFolder foldor = new ArchiveFolder();
         if(!f.isDirectory()) {
             return null;
+        }
+
+        foldor.name = FilenameUtils.getBaseName(f.getAbsolutePath());
+        for (File fil: f.listFiles()) {
+            if(fil.isFile()){
+                FileToArchiveFile(fil.getAbsolutePath());
+            } else{
+
+            }
         }
     }
 
