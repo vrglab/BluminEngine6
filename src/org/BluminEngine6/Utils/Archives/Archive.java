@@ -1,10 +1,22 @@
 package org.BluminEngine6.Utils.Archives;
 
+import org.BluminEngine6.Utils.Utils;
+import org.apache.commons.io.FilenameUtils;
+
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Archive implements Serializable {
-    private Map<Integer, ArchiveFolder> folders = new HashMap<>();
-    private Map<Integer, ArchiveFile> files = new HashMap<>();
+    private ArchiveFolder root  = new ArchiveFolder();
+    public Archive(String name) {
+        root.name = name;
+    }
+
+    public Archive() {
+        root.name = "Root";
+    }
 }
