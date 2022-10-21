@@ -203,7 +203,7 @@ public class Shader {
     public void SetUniform(String name, Color data) {
         GL20.glUniform4f(GetUniformLocation(name), data.GetR(),data.GetG(),data.GetB(),data.GetA());
     }
-
+*/
     public void Run() {
         GL20.glUseProgram(programid);
     }
@@ -211,7 +211,7 @@ public class Shader {
     public void Stop() {
         GL20.glUseProgram(0);
     }
-*/
+
     public void Delete() {
         GL20.glDetachShader(programid, vertexId);
         GL20.glDetachShader(programid, fragmentId);

@@ -2,7 +2,7 @@ package org.BluminEngine6.Legacy.Utils.Math;
 
 
 
-import java.lang.Math;
+import org.BluminEngine6.Editor.Componants.Transform;
 
 
 /**
@@ -42,8 +42,8 @@ public class Matrix {
     public static Matrix rotate(float angle, Vector3 axis) {
         Matrix result = Matrix.identity();
 
-        float cos = (float) Math.cos(Math.toRadians(angle));
-        float sin = (float) Math.sin(Math.toRadians(angle));
+        float cos = (float) java.lang.Math.cos(java.lang.Math.toRadians(angle));
+        float sin = (float) java.lang.Math.sin(java.lang.Math.toRadians(angle));
         float C = 1 - cos;
 
         result.Set(0, 0, cos + axis.x * axis.y * C);
@@ -100,7 +100,7 @@ public class Matrix {
 
         return result;
     }
-    /*
+
     public static Matrix transform(Transform transform) {
         Matrix result = Matrix.identity();
         Vector3 position = transform.position;
@@ -115,12 +115,12 @@ public class Matrix {
 
         Matrix scaleMatrix = Matrix.scale(scale);
 
-        Matrix rotationMatrix = BluminEngine5.Utils.Math.Math.multiply(rotXMatrix, BluminEngine5.Utils.Math.Math.multiply(rotYMatrix, rotZMatrix));
+        Matrix rotationMatrix = Math.multiply(rotXMatrix, Math.multiply(rotYMatrix, rotZMatrix));
 
-        result = BluminEngine5.Utils.Math.Math.multiply(translationMatrix, BluminEngine5.Utils.Math.Math.multiply(rotationMatrix, scaleMatrix));
+        result = Math.multiply(translationMatrix, Math.multiply(rotationMatrix, scaleMatrix));
         return result;
-    }*/
-    /*
+    }
+
     public static Matrix transform(Vector2 pos, Vector3 rotatio ,Vector2 scal) {
         Matrix result = Matrix.identity();
         Vector2 position = pos;
@@ -135,16 +135,16 @@ public class Matrix {
 
         Matrix scaleMatrix = Matrix.scale(scale);
 
-        Matrix rotationMatrix = BluminEngine5.Utils.Math.Math.multiply(rotXMatrix, BluminEngine5.Utils.Math.Math.multiply(rotYMatrix, rotZMatrix));
+        Matrix rotationMatrix = Math.multiply(rotXMatrix, Math.multiply(rotYMatrix, rotZMatrix));
 
-        result = BluminEngine5.Utils.Math.Math.multiply(translationMatrix, BluminEngine5.Utils.Math.Math.multiply(rotationMatrix, scaleMatrix));
+        result = Math.multiply(translationMatrix, Math.multiply(rotationMatrix, scaleMatrix));
         return result;
-    }*/
+    }
 
     public static Matrix projection(float fov, float aspect, float near, float far) {
         Matrix result = Matrix.identity();
 
-        float tanFOV = (float) Math.tan(Math.toRadians(fov / 2));
+        float tanFOV = (float) java.lang.Math.tan(java.lang.Math.toRadians(fov / 2));
         float range = far - near;
 
         result.Set(0, 0, 1.0f / (aspect * tanFOV));
@@ -156,7 +156,7 @@ public class Matrix {
 
         return result;
     }
-    /*
+
     public static Matrix view(Vector3 position, Vector3 rotation) {
         Matrix result = Matrix.identity();
 
@@ -166,12 +166,12 @@ public class Matrix {
         Matrix rotYMatrix = Matrix.rotate(rotation.y, new Vector3(0, 1, 0));
         Matrix rotZMatrix = Matrix.rotate(rotation.z, new Vector3(0, 0, 1));
 
-        Matrix rotationMatrix = BluminEngine5.Utils.Math.Math.multiply(rotZMatrix, BluminEngine5.Utils.Math.Math.multiply(rotYMatrix, rotXMatrix));
+        Matrix rotationMatrix = Math.multiply(rotZMatrix, Math.multiply(rotYMatrix, rotXMatrix));
 
-        result = BluminEngine5.Utils.Math.Math.multiply(translationMatrix, rotationMatrix);
+        result = Math.multiply(translationMatrix, rotationMatrix);
 
         return result;
-    }*/
+    }
 
     public float Get(int x, int y) {
         return elements[y * SIZE + x];
