@@ -30,14 +30,35 @@ public class ArchiveFolder implements Serializable {
     public ArchiveFile getFileInRoot(int id) {
         return files.get(id);
     }
-
     public ArchiveFile FileToArchiveFile(String file) {
-
         File f = new File(file);
         String abPath = f.getAbsolutePath();
         int id = FileCounter.getAndIncrement();
+        if(!f.isFile()) {
+            return null;
+        }
         try {
             ArchiveFile af = new ArchiveFile(id, FilenameUtils.getName(abPath),FilenameUtils.getExtension(abPath), Utils.EncodeFileWithBase64(abPath));
+            files.put(id, af);
+            return af;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    public ArchiveFolder DirectoryToArchiveFoldor(String directory) {
+        File f = new File(directory);
+        String abPath = f.getAbsolutePath();
+        int id = FileCounter.getAndIncrement();
+        if(!f.isDirectory()) {
+            return null;
+        }
+    }
+
+    public ArchiveFile CreateEmptyFile(String name, String extension) {
+        int id = FileCounter.getAndIncrement();
+        try {
+            ArchiveFile af = new ArchiveFile(id, name,extension, Utils.EncodeStringWithBase64("null"));
             files.put(id, af);
             return af;
         } catch (IOException e) {

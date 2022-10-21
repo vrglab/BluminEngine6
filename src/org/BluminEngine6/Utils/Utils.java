@@ -18,4 +18,9 @@ public class Utils {
 
         return Base64.getEncoder().encodeToString(array);
     }
+
+    public static String EncodeStringWithBase64(String data) throws IOException {
+        byte[] array = data.getBytes();
+        return Base64.getEncoder().encodeToString(array);
+    }
 }
