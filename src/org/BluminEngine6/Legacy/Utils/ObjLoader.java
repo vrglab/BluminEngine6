@@ -112,8 +112,9 @@ public class ObjLoader {
     }
 
     public static Model LoadModel(ArchivedFile obj, ResourceMannager rm) {
+        File f = null;
         try{
-            File f = rm.LoadIntoTempFile(obj);
+             f = rm.LoadIntoTempFile(obj);
             if(!FilenameUtils.getExtension(f.getAbsolutePath()).equals("bmd")) {
                 Debug.log(FilenameUtils.getExtension(f.getAbsolutePath()));
                 Debug.logException(new Exception( f.getAbsolutePath() + " is not a BluminEngine Model File"));
@@ -122,9 +123,12 @@ public class ObjLoader {
 
             ObjectInputStream objectInputStream = new ObjectInputStream(Utils.LoadFileAsStream(f.getAbsolutePath()));
             Model m = (Model) objectInputStream.readObject();
+            objectInputStream.close();
+            f.delete();
             return m;
         } catch (Exception e) {
             Debug.logException(e);
+            f.delete();
             return null;
         }
     }

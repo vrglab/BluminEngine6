@@ -133,10 +133,6 @@ public class ArchiveMannager implements Serializable{
         return am;
     }
 
-
-
-
-
     public static void Compress(ArchiveMannager archive, String file) throws Exception{
         try {
             UUID id = UUID.randomUUID();

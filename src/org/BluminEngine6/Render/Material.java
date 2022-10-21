@@ -22,10 +22,10 @@ public class Material implements Serializable {
     ResourceMannager mrm;
 
     public Material() {
-        texture = Application.getCoreResources().GetTexture(0, 5);
-        DefuseMap = Application.getCoreResources().GetTexture(0,5);
-        SpecularMap = Application.getCoreResources().GetTexture(0,5);
-        ReflectionsMap = Application.getCoreResources().GetTexture(0,5);
+        texture = Application.getCoreResources().GetTexture(0, 6);
+        DefuseMap = Application.getCoreResources().GetTexture(0,6);
+        SpecularMap = Application.getCoreResources().GetTexture(0,6);
+        ReflectionsMap = Application.getCoreResources().GetTexture(0,6);
         color = new Color(1,0.5f,1,1);
     }
 

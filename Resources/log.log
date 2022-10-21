@@ -1,31 +1,9 @@
-{System 2022/10/21 11:29:15:2915}: Starting BluminEngine6 0.0.1.0_DevSystem
-{System 2022/10/21 11:29:17:2917}: Opening game: Development System Version 1.0.0.0_Example
-{Error: 2022/10/21 11:29:17:2917}: BluminEngine5.Rendering.Master.Model
-java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
-java.base/java.lang.Class.forName0(Native Method)
-java.base/java.lang.Class.forName(Class.java:488)
-java.base/java.lang.Class.forName(Class.java:467)
-java.base/java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:802)
-java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:2058)
-java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1922)
-java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2248)
-java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1757)
-java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:538)
-java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:496)
-org.BluminEngine6.Legacy.Utils.ObjLoader.LoadModel(ObjLoader.java:124)
-org.BluminEngine6.Render.Model.<init>(Model.java:52)
-ExampleGame.ExampleGameobject.Init(ExampleGameobject.java:25)
-org.BluminEngine6.Object.BluminBehaviour.lambda$new$6(BluminBehaviour.java:78)
-org.BluminEngine6.Editor.SceneManagment.Scene.lambda$new$6(Scene.java:117)
-org.BluminEngine6.Legacy.Utils.EventSystem.Action.Invoke(Action.java:21)
-org.BluminEngine6.Application.Run(Application.java:81)
-ExampleGame.Main.main(Main.java:14)
-
-{Error: 2022/10/21 11:29:17:2917}: Cannot invoke "org.BluminEngine6.Render.Model.getRawMesh()" because "dat" is null
-org.BluminEngine6.Render.Model.<init>(Model.java:58)
-ExampleGame.ExampleGameobject.Init(ExampleGameobject.java:25)
+{System 2022/10/21 14:49:36:4936}: Starting BluminEngine6 0.0.1.0_DevSystem
+{System 2022/10/21 14:49:39:4939}: Opening game: Development System Version 1.0.0.0_Example
+{Error: 2022/10/21 14:49:39:4939}: Cannot read field "FileName" because "arch" is null
+org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager.GetMesh(ResourceMannager.java:129)
+org.BluminEngine6.Render.Model.setMesh(Model.java:82)
+ExampleGame.ExampleGameobject.Init(ExampleGameobject.java:28)
 org.BluminEngine6.Object.BluminBehaviour.lambda$new$6(BluminBehaviour.java:78)
 org.BluminEngine6.Editor.SceneManagment.Scene.lambda$new$6(Scene.java:117)
 org.BluminEngine6.Legacy.Utils.EventSystem.Action.Invoke(Action.java:21)
