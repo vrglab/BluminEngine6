@@ -12,6 +12,8 @@ import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
 import org.BluminEngine6.Render.Resolution;
 import org.apache.commons.io.FileUtils;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GLCapabilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,8 +47,14 @@ public class Application {
 
 
             Debug.log("Opening game: " + metadata.GameName + " Version " + metadata.gameVersion);
+
             display = new Display();
             display.CreateWindow(metadata.GameName, res, dm);
+            GLCapabilities cap = GL.createCapabilities();
+            GL.setCapabilities(cap);
+            if(!cap.forwardCompatible || !cap.OpenGL20) {
+                Utils.CrashApp(-3, "OpenGL not fully supported on this device");
+            }
 
 
             Awake.Invoke();
@@ -60,7 +68,6 @@ public class Application {
                 glfwSwapBuffers(display.getWindow());
                 glfwPollEvents();
             }
-            Debug.log("Closing BluminEngine6 0.0.1.0_DevSystem");
             tempFolder.delete();
             display.Close(OnExit);
         } catch (Exception e) {

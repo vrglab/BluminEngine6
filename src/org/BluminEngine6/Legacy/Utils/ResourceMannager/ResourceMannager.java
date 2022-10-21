@@ -16,6 +16,7 @@ import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Render.Mesh;
 import org.BluminEngine6.Render.Model;
+import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Render.Texture;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -32,7 +33,7 @@ public class ResourceMannager {
 
     public ArchiveMannager archive = new ArchiveMannager();
 
-    //private HashMap<String, Shader> shadersbacth = new HashMap<String, Shader>();
+    private HashMap<String, Shader> shadersbacth = new HashMap<String, Shader>();
     private HashMap<String, Texture> texturesbacth = new HashMap<String, Texture>();
     private HashMap<String, Mesh> meshsbacth = new HashMap<String, Mesh>();
     private HashMap<String, AudioFile> audiobatch = new HashMap<String, AudioFile>();
@@ -66,17 +67,27 @@ public class ResourceMannager {
             Debug.logException(e);
         }
     }
-/*
-    public Shader GetShader(String shaderLocation) {
-        if(!shadersbacth.containsKey(shaderLocation)) {
-            var dat = new Shader(shaderLocation);
-            shadersbacth.put(shaderLocation,dat);
-            return dat;
-        } else{
-            return shadersbacth.get(shaderLocation);
+
+    public Shader GetShader(int file, int Archive) {
+        try {
+            var arch = archive.GeFileFromArchive(file, Archive);
+            var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
+            var f = LoadIntoTempFile(arch);
+            if(!shadersbacth.containsKey(location)) {
+                var dat = new Shader(f.getAbsolutePath());
+                shadersbacth.put(location,dat);
+                f.delete();
+                return dat;
+            } else{
+                return shadersbacth.get(location);
+            }
+        }catch(Exception e) {
+
+            return null;
         }
+
     }
-*/
+
     public Texture GetTexture(int file, int Archive) {
         var arch = archive.GeFileFromArchive(file, Archive);
         var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
@@ -113,13 +124,15 @@ public class ResourceMannager {
     public Mesh GetMesh(int file, int Archive) {
         try{
             var arch = archive.GeFileFromArchive(file, Archive);
-            var f = LoadIntoTempFile(arch);
+
 
             var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
 
-            var shaderLocation = f.getAbsolutePath();
 
             if(!meshsbacth.containsKey(location)) {
+                var f = LoadIntoTempFile(arch);
+                var shaderLocation = f.getAbsolutePath();
+
                 var dat = ObjLoader.LoadFile(shaderLocation);
                 f.delete();
                 meshsbacth.put(location,dat);

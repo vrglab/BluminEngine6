@@ -19,11 +19,9 @@ public class Debug{
     private static List<String> Log = new ArrayList<>();
     private static List<String> RawLog = new ArrayList<>();
 
-    private static IAction InitAct= new IAction() {
-        @Override
-        public void Run() {
-            OnExit();
-        }
+    private static IAction InitAct= () -> {
+        Debug.log("Closing BluminEngine6 0.0.1.0_DevSystem");
+        OnExit();
     };
 
     private static void OnExit() {

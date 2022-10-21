@@ -1,0 +1,8 @@
+{System 2022/10/21 09:55:11:5511}: Starting BluminEngine6 0.0.1.0_DevSystem
+{System 2022/10/21 09:55:12:5512}: Opening game: Development System Version 1.0.0.0_Example
+{Error: 2022/10/21 09:55:13:5513}: Default Shader: WARNING: 0:2: '' :  #version directive missing
+ERROR: 0:2: '{' : syntax error syntax error
+
+
+{Error: 2022/10/21 09:55:13:5513}: Shader failed to compile
+{System 2022/10/21 09:55:13:5513}: Closing BluminEngine6 0.0.1.0_DevSystem

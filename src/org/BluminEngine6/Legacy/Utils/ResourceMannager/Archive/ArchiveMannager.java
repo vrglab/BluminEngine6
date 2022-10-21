@@ -183,6 +183,22 @@ public class ArchiveMannager implements Serializable{
         return r;
     }
 
+    public static ArchiveMannager Decompress(String file, String toDirectory) throws Exception{
+        UUID id = UUID.randomUUID();
+        String p = toDirectory + "/temp " + id.toString() +".baf";
+        FileInputStream fis = new FileInputStream(file+".baf");
+        FileOutputStream fos = new FileOutputStream(p);
+        InflaterInputStream iis = new InflaterInputStream(fis);
+        fos.write(iis.readAllBytes());
+        fos.close();
+        FileInputStream fileInputStream = new FileInputStream(p);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        ArchiveMannager r =  (ArchiveMannager) objectInputStream.readObject();
+        objectInputStream.close();
+        Files.delete(Paths.get(p));
+        return r;
+    }
+
 
     public int GetSize() {
         return  Archives.size();

@@ -1,9 +1,12 @@
 package ExampleGame;
 
+import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Object.BluminBehaviour;
+import org.BluminEngine6.Render.Shader;
 
 public class ExampleGameobject extends BluminBehaviour {
+    Shader shad;
     @Override
     public void Update() {
 
@@ -16,11 +19,12 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Init() {
+        shad.Creat();
     }
 
     @Override
     public void PreInit() {
-
+        shad = Application.getResourceMannager().GetShader(0,7);
     }
 
     @Override
