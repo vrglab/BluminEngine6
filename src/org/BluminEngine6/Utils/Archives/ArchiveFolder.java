@@ -26,19 +26,19 @@ public class ArchiveFolder implements Serializable {
     public ArchiveFolder getFolder(int id) {
         return folders.get(id);
     }
-    public ArchiveFile getFileInRoot(int id) {
+    public ArchiveFile getFile(int id) {
         return files.get(id);
     }
     public ArchiveFile FileToArchiveFile(String file) {
         File f = new File(file);
         String abPath = f.getAbsolutePath();
-        int id = FileCounter.getAndIncrement();
         if(!f.isFile()) {
             return null;
         }
+
+        int id = FileCounter.getAndIncrement();
         try {
             ArchiveFile af = new ArchiveFile(id, FilenameUtils.getName(abPath),FilenameUtils.getExtension(abPath), Utils.EncodeFileWithBase64(abPath));
-            files.put(id, af);
             return af;
         } catch (IOException e) {
             return null;
@@ -48,22 +48,27 @@ public class ArchiveFolder implements Serializable {
     public ArchiveFolder DirectoryToArchiveFoldor(String directory) {
         File f = new File(directory);
         String abPath = f.getAbsolutePath();
-        int id = FileCounter.getAndIncrement();
-        ArchiveFolder foldor = new ArchiveFolder();
         if(!f.isDirectory()) {
             return null;
         }
+        int id = FolderCounter.getAndIncrement();
+        ArchiveFolder folder = new ArchiveFolder();
 
-        foldor.name = FilenameUtils.getBaseName(f.getAbsolutePath());
+        folder.id = id;
+        folder.name = FilenameUtils.getBaseName(abPath);
         for (File fil: f.listFiles()) {
             if(fil.isFile()){
-                FileToArchiveFile(fil.getAbsolutePath());
+              ArchiveFile af =  FileToArchiveFile(abPath);
+              folder.files.put(af.getId(), af);
             } else{
-
+              ArchiveFolder a =  folder.DirectoryToArchiveFoldor(abPath);
+              a.ParentFolderId = id;
+              folder.folders.put(a.id, a);
             }
         }
-    }
 
+        return folder;
+    }
     public ArchiveFile CreateEmptyFile(String name, String extension) {
         int id = FileCounter.getAndIncrement();
         try {

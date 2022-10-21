@@ -21,4 +21,8 @@ public class ArchiveFile implements Serializable {
         Extension = extension;
         this.fileData = fileData;
     }
+
+    public int getId() {
+        return id;
+    }
 }

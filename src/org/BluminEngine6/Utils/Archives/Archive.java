@@ -19,4 +19,9 @@ public class Archive implements Serializable {
     public Archive() {
         root.name = "Root";
     }
+
+    public Archive(String directory, String name) {
+        root = root.DirectoryToArchiveFoldor(directory);
+        root.name = name;
+    }
 }
