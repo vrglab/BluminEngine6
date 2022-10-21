@@ -3,6 +3,7 @@ package org.BluminEngine6.Editor.Componants.Audio.Legacy;
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.lwjgl.openal.AL10;
 
 import org.BluminEngine6.Object.Component;
@@ -17,9 +18,9 @@ public class AudioSource extends Component {
     private float rolloff = 2, Distance = 6, max_distance = 50;
     int id, buffer;
 
-    public AudioSource(int file, int archive) {
+    public AudioSource(int file, int archive, ResourceMannager rm) {
         try {
-            Audiofile = Application.getResourceMannager().GetAudio(file, archive);
+            Audiofile = rm.GetAudio(file, archive);
             if(Mixer.instance == null) {
                 Debug.logError("Mixer is required in the scene for audio playing");
                 return;

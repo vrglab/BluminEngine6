@@ -6,6 +6,7 @@ import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Legacy.Utils.Math.Vector2;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
+import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
@@ -23,7 +24,7 @@ public class Shader {
     ArchivedFile Vertex, Fragment;
 
 
-    public Shader(String location) {
+    public Shader(String location, ResourceMannager rm) {
         String data = Utils.LoadFile(location);
         JSONObject obj = new JSONObject(data);
         name = obj.getString("name");
@@ -32,8 +33,8 @@ public class Shader {
         JSONObject VertexObj = obj.getJSONObject("Vertex");
         JSONObject FragmentObj = obj.getJSONObject("Fragment");
 
-        Vertex = Application.getResourceMannager().archive.GeFileFromArchive(VertexObj.getInt("File") , VertexObj.getInt("Archive"));
-        Fragment = Application.getResourceMannager().archive.GeFileFromArchive(FragmentObj.getInt("File") , FragmentObj.getInt("Archive"));
+        Vertex = rm.archive.GeFileFromArchive(VertexObj.getInt("File") , VertexObj.getInt("Archive"));
+        Fragment = rm.archive.GeFileFromArchive(FragmentObj.getInt("File") , FragmentObj.getInt("Archive"));
 
         VertexShader = new String(Vertex.GetDecodedData(), StandardCharsets.UTF_8);
         FragmentShader = new String(Fragment.GetDecodedData(), StandardCharsets.UTF_8);

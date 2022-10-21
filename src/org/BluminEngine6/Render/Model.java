@@ -5,6 +5,7 @@ import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
+import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Physics.Colision.Collider;
 import org.apache.commons.lang3.SerializationUtils;
 
@@ -47,8 +48,8 @@ public class Model implements Serializable {
         setMaterial(m);
     }
 
-    public Model(int file, int archive) {
-        var dat = ObjLoader.LoadModel(Application.getResourceMannager().archive.GeFileFromArchive(file,archive));
+    public Model(int file, int archive, ResourceMannager rm) {
+        var dat = ObjLoader.LoadModel(rm.archive.GeFileFromArchive(file,archive),rm);
         ByteArrayOutputStream out2 = new ByteArrayOutputStream();
         InflaterOutputStream infl = new InflaterOutputStream(out2);
         Mesh m = null;
@@ -67,18 +68,18 @@ public class Model implements Serializable {
 
         mesh = new MeshData(m, dat.getRawMesh());
         coliders = dat.getColliders();
-        setMaterial(dat.getRawMaterial());
+        setMaterial(dat.getRawMaterial(), rm);
     }
 
     public Model() {
 
     }
 
-    public void setMesh(int file, int folder) {
+    public void setMesh(int file, int folder, ResourceMannager rm) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DeflaterOutputStream defl = new DeflaterOutputStream(out);
 
-        byte[] meshdata = SerializationUtils.serialize(Application.getResourceMannager().GetMesh(file,folder));
+        byte[] meshdata = SerializationUtils.serialize(rm.GetMesh(file,folder));
         try {
             defl.write(meshdata);
             defl.flush();
@@ -136,8 +137,8 @@ public class Model implements Serializable {
         this.material = new MaterialData(material);
     }
 
-    public void setMaterial(SerliazedMaterial material) {
-        this.material = new MaterialData(material);
+    public void setMaterial(SerliazedMaterial material, ResourceMannager rm) {
+        this.material = new MaterialData(material,rm);
     }
 
 
@@ -171,15 +172,15 @@ public class Model implements Serializable {
             this.color = color;
         }
 
-        public static Material Parse(SerliazedMaterial material) {
+        public static Material Parse(SerliazedMaterial material, ResourceMannager rm) {
             Material m = new Material();
             m.reflection = material.reflection;
             m.Shine = material.Shine;
             m.Ambient = material.Ambient;
-            m.setSpecularMap(Application.getResourceMannager().GetTexture(material.SpecularMap.file, material.SpecularMap.Archive));
-            m.setDefuseMap(Application.getResourceMannager().GetTexture(material.DefuseMap.file, material.DefuseMap.Archive));
-            m.setReflectionsMap(Application.getResourceMannager().GetTexture(material.ReflectionsMap.file, material.ReflectionsMap.Archive));
-            m.SetTexture(Application.getResourceMannager().GetTexture(material.texture.file, material.texture.Archive));
+            m.setSpecularMap(rm.GetTexture(material.SpecularMap.file, material.SpecularMap.Archive));
+            m.setDefuseMap(rm.GetTexture(material.DefuseMap.file, material.DefuseMap.Archive));
+            m.setReflectionsMap(rm.GetTexture(material.ReflectionsMap.file, material.ReflectionsMap.Archive));
+            m.SetTexture(rm.GetTexture(material.texture.file, material.texture.Archive));
             m.setColor(material.color);
             return m;
         }
@@ -208,9 +209,9 @@ public class Model implements Serializable {
             SerMaterial = SerliazedMaterial.Parse(material);
         }
 
-        public MaterialData(SerliazedMaterial material) {
+        public MaterialData(SerliazedMaterial material, ResourceMannager rm) {
             SerMaterial = material;
-            Material = SerliazedMaterial.Parse(material);
+            Material = SerliazedMaterial.Parse(material,rm);
         }
 
         public SerliazedMaterial getSerMaterial() {

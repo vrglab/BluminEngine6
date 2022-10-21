@@ -1,7 +1,5 @@
 package org.BluminEngine6.Legacy.Utils.Debuging;
 
-
-
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
 import org.BluminEngine6.Legacy.Utils.Utils;
@@ -20,7 +18,7 @@ public class Debug{
     private static List<String> RawLog = new ArrayList<>();
 
     private static IAction InitAct= () -> {
-        Debug.log("Closing BluminEngine6 0.0.1.0_DevSystem");
+
         OnExit();
     };
 

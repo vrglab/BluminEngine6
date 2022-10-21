@@ -6,6 +6,7 @@ import org.BluminEngine6.Legacy.Utils.Annotations.MustCreate;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector2;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
+import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.opengl.GL11;
@@ -43,10 +44,10 @@ public class Texture implements Serializable{
         height = (int)size.y;
     }
 
-    public void Create() {
+    public void Create(ResourceMannager rm) {
         if(file != null) {
             try{
-                texture = GetTexFromFile();
+                texture = GetTexFromFile(rm);
                 width = texture.getWidth();
                 height = texture.getHeight();
                 textureId = texture.getTextureID();
@@ -104,10 +105,10 @@ public class Texture implements Serializable{
     }
 
 
-    private org.newdawn.slick.opengl.Texture GetTexFromFile()
+    private org.newdawn.slick.opengl.Texture GetTexFromFile(ResourceMannager rm)
     throws IOException{
 
-        File f = Application.getResourceMannager().LoadIntoTempFile(file);
+        File f = rm.LoadIntoTempFile(file);
         InputStream is = Utils.LoadFileAsStream(f.getAbsolutePath());
         org.newdawn.slick.opengl.Texture tex =  TextureLoader.getTexture(file.Extension, is , GL11.GL_LINEAR);
         is.close();

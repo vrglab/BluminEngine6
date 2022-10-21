@@ -24,7 +24,7 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void PreInit() {
-        shad = Application.getResourceMannager().GetShader(0,7);
+        shad = Application.getCoreResources().GetShader(0,7);
     }
 
     @Override

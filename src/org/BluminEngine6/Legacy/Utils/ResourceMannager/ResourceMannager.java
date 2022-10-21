@@ -74,7 +74,7 @@ public class ResourceMannager {
             var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
             var f = LoadIntoTempFile(arch);
             if(!shadersbacth.containsKey(location)) {
-                var dat = new Shader(f.getAbsolutePath());
+                var dat = new Shader(f.getAbsolutePath(), this);
                 shadersbacth.put(location,dat);
                 f.delete();
                 return dat;

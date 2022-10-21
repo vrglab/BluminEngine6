@@ -12,12 +12,15 @@ import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
 import org.BluminEngine6.Render.Resolution;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GLCapabilities;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -29,7 +32,9 @@ public class Application {
 
 
     static Metadata metadata;
-    static ResourceMannager resourceMannager;
+
+    static List<ResourceMannager> resourceMannager = new ArrayList<>();
+    static ResourceMannager coreResources;
     static Display display;
     static File tempFolder;
     static TagMannager tagMannager = new TagMannager();;
@@ -43,7 +48,20 @@ public class Application {
             tempFolder.mkdirs();
             Files.setAttribute(tempFolder.toPath(), "dos:hidden", true);
 
-            resourceMannager = new ResourceMannager(metadata.MainArchiveFile);
+            coreResources = new ResourceMannager("Core");
+            File f = new File(metadata.ResourceFolder);
+
+            for (File file: f.listFiles()) {
+                if(file.isFile()) {
+                    if(FilenameUtils.isExtension(file.getAbsolutePath(), "baf")) {
+                        String a = FilenameUtils.getBaseName(file.getAbsolutePath());
+                        if(!FilenameUtils.getBaseName(file.getAbsolutePath()).equals("Core")) {
+                            resourceMannager.add(new ResourceMannager(a));
+                        }
+                    }
+                }
+            }
+
 
 
             Debug.log("Opening game: " + metadata.GameName + " Version " + metadata.gameVersion);
@@ -76,8 +94,16 @@ public class Application {
 
     }
 
-    public static ResourceMannager getResourceMannager() {
-        return resourceMannager;
+    /**
+     * Game engines pre built core resources
+     * @author: Vrglab
+     */
+    public static ResourceMannager getCoreResources() {
+        return coreResources;
+    }
+
+    public static ResourceMannager getArchive(int id) {
+        return resourceMannager.get(id);
     }
 
     public static Metadata getMetadata() {

@@ -5,6 +5,7 @@ import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector2;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
+import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Render.Mesh;
 import org.BluminEngine6.Render.Model;
 import org.BluminEngine6.Render.Vertex;
@@ -65,8 +66,8 @@ public class ObjLoader {
         }
     }
 
-    public static Mesh LoadFile(ArchivedFile obj) {
-        AIScene scene = GetDtaFromFile(obj);
+    public static Mesh LoadFile(ArchivedFile obj, ResourceMannager rm) {
+        AIScene scene = GetDtaFromFile(obj, rm);
 
         if(scene == null) {
             Debug.logError("Failed to load model at: " + obj);
@@ -110,9 +111,9 @@ public class ObjLoader {
         }
     }
 
-    public static Model LoadModel(ArchivedFile obj) {
+    public static Model LoadModel(ArchivedFile obj, ResourceMannager rm) {
         try{
-            File f = Application.getResourceMannager().LoadIntoTempFile(obj);
+            File f = rm.LoadIntoTempFile(obj);
             if(!FilenameUtils.getExtension(f.getAbsolutePath()).equals("bmd")) {
                 Debug.log(FilenameUtils.getExtension(f.getAbsolutePath()));
                 Debug.logException(new Exception( f.getAbsolutePath() + " is not a BluminEngine Model File"));
@@ -128,9 +129,9 @@ public class ObjLoader {
         }
     }
 
-    private static AIScene GetDtaFromFile(ArchivedFile file){
+    private static AIScene GetDtaFromFile(ArchivedFile file, ResourceMannager rm){
         try{
-            File f = Application.getResourceMannager().LoadIntoTempFile(file);
+            File f = rm.LoadIntoTempFile(file);
             AIScene as = Assimp.aiImportFile(f.getAbsolutePath(), Assimp.aiProcess_JoinIdenticalVertices | Assimp.aiProcess_Triangulate );
             f.delete();
             return  as;
