@@ -25,10 +25,10 @@ public class Version {
         String reg = "[._]";
         String[] s = ext.split(reg);
 
-        this.a = Integer.parseInt(s[0]);
-        this.b = Integer.parseInt(s[1]);
-        this.p = Integer.parseInt(s[2]);
-        this.r = Integer.parseInt(s[3]);
+        this.a = Integer.parseInt(s[1]);
+        this.b = Integer.parseInt(s[2]);
+        this.p = Integer.parseInt(s[3]);
+        this.r = Integer.parseInt(s[0]);
         this.ext = s[4];
     }
 
@@ -64,6 +64,6 @@ public class Version {
 
     @Override
     public String toString() {
-        return "Version " + r + "." + a +"." + b +"."+ p + "_" + ext;
+        return r + "." + a +"." + b +"."+ p + "_" + ext;
     }
 }
