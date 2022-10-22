@@ -1,10 +1,12 @@
 package org.BluminEngine6.Utils.Archives;
 
+import org.BluminEngine6.Utils.Utils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 import static org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchiveMannager.NULL;
@@ -19,7 +21,11 @@ public class ArchiveFile implements Serializable {
         this.id = id;
         FileName = fileName;
         Extension = extension;
-        this.fileData = fileData;
+        try {
+            this.fileData = Utils.EncodeStringWithBase64(fileData);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         this.FolderId = FolderId;
     }
 
@@ -32,6 +38,6 @@ public class ArchiveFile implements Serializable {
     }
 
     public String getFileData() {
-        return fileData;
+        return new String(Utils.DecodedDataFromBase64(fileData), StandardCharsets.UTF_8) ;
     }
 }

@@ -2,11 +2,13 @@ package org.BluminEngine6.Utils.Archives;
 
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Utils.Utils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -36,7 +38,7 @@ public class ArchiveFolder implements Serializable {
 
         int id = FileCounter.getAndIncrement();
         try {
-            ArchiveFile af = new ArchiveFile(id, FilenameUtils.getName(abPath),FilenameUtils.getExtension(abPath), Utils.EncodeFileWithBase64(abPath), id);
+            ArchiveFile af = new ArchiveFile(id, FilenameUtils.getBaseName(abPath),FilenameUtils.getExtension(abPath), new String(FileUtils.readFileToByteArray(f), StandardCharsets.UTF_8), id);
             return af;
         } catch (IOException e) {
             Debug.logException(e);

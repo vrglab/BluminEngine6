@@ -1,14 +1,8 @@
 package ExampleGame;
-
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Editor.Componants.Audio.Legacy.AudioSource;
 import org.BluminEngine6.Editor.Componants.MeshRenderer;
-import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Object.BluminBehaviour;
-import org.BluminEngine6.Render.Model;
-import org.BluminEngine6.Render.Shader;
-import org.BluminEngine6.Utils.Archives.ArchiveFolder;
-
-import java.io.IOException;
 
 public class ExampleGameobject extends BluminBehaviour {
 
