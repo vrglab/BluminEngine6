@@ -1,15 +1,13 @@
 package org.BluminEngine6.Utils.Archives;
 
-import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Utils.Utils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -38,9 +36,10 @@ public class ArchiveFolder implements Serializable {
 
         int id = FileCounter.getAndIncrement();
         try {
-            ArchiveFile af = new ArchiveFile(id, FilenameUtils.getName(abPath),FilenameUtils.getExtension(abPath), Utils.EncodeFileWithBase64(abPath));
+            ArchiveFile af = new ArchiveFile(id, FilenameUtils.getName(abPath),FilenameUtils.getExtension(abPath), Utils.EncodeFileWithBase64(abPath), id);
             return af;
         } catch (IOException e) {
+            Debug.logException(e);
             return null;
         }
     }
@@ -58,10 +57,10 @@ public class ArchiveFolder implements Serializable {
         folder.name = FilenameUtils.getBaseName(abPath);
         for (File fil: f.listFiles()) {
             if(fil.isFile()){
-              ArchiveFile af =  FileToArchiveFile(abPath);
+              ArchiveFile af =  folder.FileToArchiveFile(fil.getAbsolutePath());
               folder.files.put(af.getId(), af);
             } else{
-              ArchiveFolder a =  folder.DirectoryToArchiveFoldor(abPath);
+              ArchiveFolder a =  folder.DirectoryToArchiveFoldor(fil.getAbsolutePath());
               a.ParentFolderId = id;
               folder.folders.put(a.id, a);
             }
@@ -72,7 +71,7 @@ public class ArchiveFolder implements Serializable {
     public ArchiveFile CreateEmptyFile(String name, String extension) {
         int id = FileCounter.getAndIncrement();
         try {
-            ArchiveFile af = new ArchiveFile(id, name,extension, Utils.EncodeStringWithBase64("null"));
+            ArchiveFile af = new ArchiveFile(id, name,extension, Utils.EncodeStringWithBase64("null"), NULL);
             files.put(id, af);
             return af;
         } catch (IOException e) {

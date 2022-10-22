@@ -10,19 +10,28 @@ import java.util.Base64;
 import static org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchiveMannager.NULL;
 
 public class ArchiveFile implements Serializable {
-    private int id = NULL;
+    private int id = NULL, FolderId = NULL;
     public String FileName;
     public String Extension;
     protected String fileData;
 
-    public ArchiveFile(int id, String fileName, String extension, String fileData) {
+    public ArchiveFile(int id, String fileName, String extension, String fileData, int FolderId) {
         this.id = id;
         FileName = fileName;
         Extension = extension;
         this.fileData = fileData;
+        this.FolderId = FolderId;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getFolderId() {
+        return FolderId;
+    }
+
+    public String getFileData() {
+        return fileData;
     }
 }

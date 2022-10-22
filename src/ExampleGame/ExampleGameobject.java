@@ -6,6 +6,7 @@ import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Render.Model;
 import org.BluminEngine6.Render.Shader;
+import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 
 import java.io.IOException;
 
@@ -24,15 +25,7 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Init() {
-        Model m = new Model();
-        m.setMesh(1, 1, Application.getCoreResources());
-        try {
-            m.SaveToFile("Dragon");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        mr = new MeshRenderer(m, Application.getCoreResources());
-        RegisterComponant(mr);
+
     }
 
     @Override

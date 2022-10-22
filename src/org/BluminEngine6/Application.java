@@ -5,12 +5,13 @@ import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
 import org.BluminEngine6.Legacy.Utils.Metadata;
-import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Object.Tags.TagMannager;
 import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
 import org.BluminEngine6.Render.Resolution;
+import org.BluminEngine6.Utils.Archives.Archive;
+import org.BluminEngine6.Utils.Archives.ArchiveMannager;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.opengl.GL;
@@ -33,8 +34,8 @@ public class Application {
 
     static Metadata metadata;
 
-    static List<ResourceMannager> resourceMannager = new ArrayList<>();
-    static ResourceMannager coreResources;
+    static List<Archive> resourceMannager = new ArrayList<>();
+    static Archive coreResources;
     static Display display;
     static File tempFolder;
     static TagMannager tagMannager = new TagMannager();;
@@ -48,15 +49,14 @@ public class Application {
             tempFolder.mkdirs();
             Files.setAttribute(tempFolder.toPath(), "dos:hidden", true);
 
-            coreResources = new ResourceMannager("Core");
+            coreResources = ArchiveMannager.DeserializeArchiveFile(metadata.ResourceFolder + "/Core.baf");
             File f = new File(metadata.ResourceFolder);
 
             for (File file: f.listFiles()) {
                 if(file.isFile()) {
                     if(FilenameUtils.isExtension(file.getAbsolutePath(), "baf")) {
-                        String a = FilenameUtils.getBaseName(file.getAbsolutePath());
                         if(!FilenameUtils.getBaseName(file.getAbsolutePath()).equals("Core")) {
-                            resourceMannager.add(new ResourceMannager(a));
+                            resourceMannager.add(ArchiveMannager.DeserializeArchiveFile(file.getAbsolutePath()));
                         }
                     }
                 }
@@ -91,18 +91,17 @@ public class Application {
         } catch (Exception e) {
             Utils.CrashApp(-1, e);
         }
-
     }
 
     /**
      * Game engines pre built core resources
      * @author: Vrglab
      */
-    public static ResourceMannager getCoreResources() {
+    public static Archive getCoreResources() {
         return coreResources;
     }
 
-    public static ResourceMannager getArchive(int id) {
+    public static Archive getArchive(int id) {
         return resourceMannager.get(id);
     }
 

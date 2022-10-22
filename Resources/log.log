@@ -1,12 +1,2 @@
-{System 2022/10/21 14:49:36:4936}: Starting BluminEngine6 0.0.1.0_DevSystem
-{System 2022/10/21 14:49:39:4939}: Opening game: Development System Version 1.0.0.0_Example
-{Error: 2022/10/21 14:49:39:4939}: Cannot read field "FileName" because "arch" is null
-org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager.GetMesh(ResourceMannager.java:129)
-org.BluminEngine6.Render.Model.setMesh(Model.java:82)
-ExampleGame.ExampleGameobject.Init(ExampleGameobject.java:28)
-org.BluminEngine6.Object.BluminBehaviour.lambda$new$6(BluminBehaviour.java:78)
-org.BluminEngine6.Editor.SceneManagment.Scene.lambda$new$6(Scene.java:117)
-org.BluminEngine6.Legacy.Utils.EventSystem.Action.Invoke(Action.java:21)
-org.BluminEngine6.Application.Run(Application.java:81)
-ExampleGame.Main.main(Main.java:14)
-
+{System 2022/10/22 17:49:44:4944}: Starting BluminEngine6 0.0.1.0_DevSystem
+{System 2022/10/22 17:49:45:4945}: Opening game: Development System Version 1.0.0.0_Example

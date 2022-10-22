@@ -8,6 +8,8 @@ import org.BluminEngine6.Legacy.Utils.Math.Vector2;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Legacy.Utils.Utils;
+import org.BluminEngine6.Utils.Archives.ArchiveFile;
+import org.BluminEngine6.Utils.Archives.ArchiveMannager;
 import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
@@ -29,10 +31,10 @@ public class Texture implements Serializable{
     private float width, height;
     private ByteBuffer decodedbytes;
     private int textureId;
-    public ArchivedFile file;
+    public ArchiveFile file;
     private String fileBackup;
 
-    public Texture(ArchivedFile file) {
+    public Texture(ArchiveFile file) {
         this.file = file;
     }
 
@@ -44,16 +46,17 @@ public class Texture implements Serializable{
         height = (int)size.y;
     }
 
-    public void Create(ResourceMannager rm) {
+    public void Create() {
         if(file != null) {
             try{
-                texture = GetTexFromFile(rm);
+                texture = GetTexFromFile();
                 width = texture.getWidth();
                 height = texture.getHeight();
                 textureId = texture.getTextureID();
 
-                decodedbytes = ByteBuffer.allocate(file.GetDecodedData().length * 4);
-                decodedbytes.put(file.GetDecodedData());
+                byte[] decodedData = org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(file.getFileData());
+                decodedbytes = ByteBuffer.allocate(decodedData.length * 4);
+                decodedbytes.put(decodedData);
                 decodedbytes.flip();
 
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
@@ -105,10 +108,10 @@ public class Texture implements Serializable{
     }
 
 
-    private org.newdawn.slick.opengl.Texture GetTexFromFile(ResourceMannager rm)
+    private org.newdawn.slick.opengl.Texture GetTexFromFile()
     throws IOException{
 
-        File f = rm.LoadIntoTempFile(file);
+        File f = ArchiveMannager.LoadArchiveFileToTempFile(file);
         InputStream is = Utils.LoadFileAsStream(f.getAbsolutePath());
         org.newdawn.slick.opengl.Texture tex =  TextureLoader.getTexture(file.Extension, is , GL11.GL_LINEAR);
         is.close();

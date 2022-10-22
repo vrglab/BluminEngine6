@@ -7,6 +7,7 @@ import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Render.Model;
 import org.BluminEngine6.Render.Shader;
+import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL15;
@@ -19,9 +20,9 @@ public class MeshRenderer extends Component {
     public Model model;
     private Shader shader;
 
-    public MeshRenderer(Model model, ResourceMannager rm) {
+    public MeshRenderer(Model model) {
         this.model = model;
-        shader = rm.GetShader(0, 7);
+        shader = ResourceBatch.GetShader(0, Application.getCoreResources().getRoot().getFolder(4));
     }
 
     @Override

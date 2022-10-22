@@ -9,7 +9,11 @@ import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Render.Mesh;
 import org.BluminEngine6.Render.Model;
 import org.BluminEngine6.Render.Vertex;
+import org.BluminEngine6.Utils.Archives.ArchiveFile;
+import org.BluminEngine6.Utils.Archives.ArchiveFolder;
+import org.BluminEngine6.Utils.Archives.ArchiveMannager;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.SerializationUtils;
 import org.lwjgl.assimp.*;
 
 import java.io.File;
@@ -111,10 +115,12 @@ public class ObjLoader {
         }
     }
 
-    public static Model LoadModel(ArchivedFile obj, ResourceMannager rm) {
+    public static Model LoadModel(ArchiveFile obj) {
         File f = null;
         try{
-             f = rm.LoadIntoTempFile(obj);
+
+            ArchiveFile af = new ArchiveFile(obj.getId(),obj.FileName, obj.Extension,  new String(org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(obj.getFileData())), obj.getFolderId());
+             f = ArchiveMannager.LoadArchiveFileToTempFile(af);
             if(!FilenameUtils.getExtension(f.getAbsolutePath()).equals("bmd")) {
                 Debug.log(FilenameUtils.getExtension(f.getAbsolutePath()));
                 Debug.logException(new Exception( f.getAbsolutePath() + " is not a BluminEngine Model File"));

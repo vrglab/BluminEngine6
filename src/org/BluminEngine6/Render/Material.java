@@ -6,6 +6,9 @@ import org.BluminEngine6.Legacy.Utils.Annotations.MustCreate;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
+import org.BluminEngine6.Utils.Archives.ArchiveFile;
+import org.BluminEngine6.Utils.Archives.ArchiveFolder;
+import org.BluminEngine6.Utils.ResourceBatch;
 
 import java.io.Serializable;
 
@@ -22,36 +25,34 @@ public class Material implements Serializable {
     ResourceMannager mrm;
 
     public Material() {
-        texture = Application.getCoreResources().GetTexture(0, 6);
-        DefuseMap = Application.getCoreResources().GetTexture(0,6);
-        SpecularMap = Application.getCoreResources().GetTexture(0,6);
-        ReflectionsMap = Application.getCoreResources().GetTexture(0,6);
+        texture = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        DefuseMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        SpecularMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        ReflectionsMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
         color = new Color(1,0.5f,1,1);
     }
 
-    public Material(ArchivedFile text, ResourceMannager rm) {
-        mrm = rm;
-        texture = mrm.GetTexture(text.ArchiveId, text.ID);
-        DefuseMap = mrm.GetTexture(0,5);
-        SpecularMap = mrm.GetTexture(0,5);
-        ReflectionsMap = mrm.GetTexture(0,5);
+    public Material(ArchiveFile text, ArchiveFolder rm) {
+        texture = ResourceBatch.GetTexture(text.getId(), rm);
+        DefuseMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        SpecularMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        ReflectionsMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
         color = new Color(1,0.5f,1,1);
     }
 
-    public Material(Texture text, ResourceMannager rm) {
-        mrm = rm;
+    public Material(Texture text) {
         texture = text;
-        DefuseMap = mrm.GetTexture(0,5);
-        SpecularMap = mrm.GetTexture(0,5);
-        ReflectionsMap = mrm.GetTexture(0,5);
+        DefuseMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        SpecularMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
+        ReflectionsMap = ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4));
         color = new Color(1,0.5f,1,1);
     }
 
     public void Creat() {
-        texture.Create(mrm);
-        DefuseMap.Create(mrm);
-        SpecularMap.Create(mrm);
-        ReflectionsMap.Create(mrm);
+        texture.Create();
+        DefuseMap.Create();
+        SpecularMap.Create();
+        ReflectionsMap.Create();
     }
 
     public void Destroy() {

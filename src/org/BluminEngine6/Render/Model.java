@@ -7,6 +7,8 @@ import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Physics.Colision.Collider;
+import org.BluminEngine6.Utils.Archives.ArchiveFolder;
+import org.BluminEngine6.Utils.ResourceBatch;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.io.*;
@@ -48,8 +50,8 @@ public class Model implements Serializable {
         setMaterial(m);
     }
 
-    public Model(int file, int archive, ResourceMannager rm) {
-        var dat = ObjLoader.LoadModel(rm.archive.GeFileFromArchive(file,archive),rm);
+    public Model(int file, ArchiveFolder rm) {
+        var dat = ObjLoader.LoadModel(rm.getFile(file));
         ByteArrayOutputStream out2 = new ByteArrayOutputStream();
         InflaterOutputStream infl = new InflaterOutputStream(out2);
         Mesh m = null;
@@ -75,11 +77,11 @@ public class Model implements Serializable {
 
     }
 
-    public void setMesh(int file, int folder, ResourceMannager rm) {
+    public void setMesh(int file,  ArchiveFolder rm) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DeflaterOutputStream defl = new DeflaterOutputStream(out);
 
-        byte[] meshdata = SerializationUtils.serialize(rm.GetMesh(file,folder));
+        byte[] meshdata = SerializationUtils.serialize(ResourceBatch.GetMesh(file, rm));
         try {
             defl.write(meshdata);
             defl.flush();
@@ -137,7 +139,7 @@ public class Model implements Serializable {
         this.material = new MaterialData(material);
     }
 
-    public void setMaterial(SerliazedMaterial material, ResourceMannager rm) {
+    public void setMaterial(SerliazedMaterial material, ArchiveFolder rm) {
         this.material = new MaterialData(material,rm);
     }
 
@@ -172,15 +174,15 @@ public class Model implements Serializable {
             this.color = color;
         }
 
-        public static Material Parse(SerliazedMaterial material, ResourceMannager rm) {
+        public static Material Parse(SerliazedMaterial material, ArchiveFolder rm) {
             Material m = new Material();
             m.reflection = material.reflection;
             m.Shine = material.Shine;
             m.Ambient = material.Ambient;
-            m.setSpecularMap(rm.GetTexture(material.SpecularMap.file, material.SpecularMap.Archive));
-            m.setDefuseMap(rm.GetTexture(material.DefuseMap.file, material.DefuseMap.Archive));
-            m.setReflectionsMap(rm.GetTexture(material.ReflectionsMap.file, material.ReflectionsMap.Archive));
-            m.SetTexture(rm.GetTexture(material.texture.file, material.texture.Archive));
+            m.setSpecularMap(ResourceBatch.GetTexture(m.getSpecularMap().file.getId(), Application.getCoreResources().getRoot().getFolder(m.getSpecularMap().file.getFolderId())));
+            m.setDefuseMap(ResourceBatch.GetTexture(m.getSpecularMap().file.getId(), Application.getCoreResources().getRoot().getFolder(m.getSpecularMap().file.getFolderId())));
+            m.setReflectionsMap(ResourceBatch.GetTexture(m.getSpecularMap().file.getId(), Application.getCoreResources().getRoot().getFolder(m.getSpecularMap().file.getFolderId())));
+            m.SetTexture(ResourceBatch.GetTexture(m.getSpecularMap().file.getId(), Application.getCoreResources().getRoot().getFolder(m.getSpecularMap().file.getFolderId())));
             m.setColor(material.color);
             return m;
         }
@@ -191,10 +193,10 @@ public class Model implements Serializable {
             m.Ambient = material.Ambient;
             m.Shine = material.Shine;;
             m.reflection = material.reflection;
-            m.texture = new SerliazedTexture(material.getTexture().file.ID, material.getTexture().file.ArchiveId);
-            m.DefuseMap = new SerliazedTexture(material.getDefuseMap().file.ID, material.getDefuseMap().file.ArchiveId);
-            m.SpecularMap = new SerliazedTexture(material.getSpecularMap().file.ID, material.getSpecularMap().file.ArchiveId);
-            m.ReflectionsMap = new SerliazedTexture(material.getReflectionsMap().file.ID, material.getReflectionsMap().file.ArchiveId);
+            m.texture = new SerliazedTexture(material.getTexture().file.getId(), material.getTexture().file.getFolderId());
+            m.DefuseMap = new SerliazedTexture(material.getDefuseMap().file.getId(), material.getDefuseMap().file.getFolderId());
+            m.SpecularMap = new SerliazedTexture(material.getSpecularMap().file.getId(), material.getSpecularMap().file.getFolderId());
+            m.ReflectionsMap = new SerliazedTexture(material.getReflectionsMap().file.getId(), material.getReflectionsMap().file.getFolderId());
             return m;
         }
 
@@ -209,7 +211,7 @@ public class Model implements Serializable {
             SerMaterial = SerliazedMaterial.Parse(material);
         }
 
-        public MaterialData(SerliazedMaterial material, ResourceMannager rm) {
+        public MaterialData(SerliazedMaterial material, ArchiveFolder rm) {
             SerMaterial = material;
             Material = SerliazedMaterial.Parse(material,rm);
         }

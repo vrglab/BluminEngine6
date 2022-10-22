@@ -8,6 +8,8 @@ import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Legacy.Utils.Utils;
+import org.BluminEngine6.Utils.Archives.ArchiveFile;
+import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.lwjgl.opengl.GL11;
@@ -21,10 +23,10 @@ public class Shader {
     private String VertexShader, FragmentShader, name;
     private int vertexId, fragmentId, programid;
     private boolean Raytracing;
-    ArchivedFile Vertex, Fragment;
+    ArchiveFile Vertex, Fragment;
 
 
-    public Shader(String location, ResourceMannager rm) {
+    public Shader(String location, ArchiveFolder rm) {
         String data = Utils.LoadFile(location);
         JSONObject obj = new JSONObject(data);
         name = obj.getString("name");
@@ -33,11 +35,12 @@ public class Shader {
         JSONObject VertexObj = obj.getJSONObject("Vertex");
         JSONObject FragmentObj = obj.getJSONObject("Fragment");
 
-        Vertex = rm.archive.GeFileFromArchive(VertexObj.getInt("File") , VertexObj.getInt("Archive"));
-        Fragment = rm.archive.GeFileFromArchive(FragmentObj.getInt("File") , FragmentObj.getInt("Archive"));
+        Vertex = rm.getFile(VertexObj.getInt("File"));
+        Fragment = rm.getFile(FragmentObj.getInt("File"));
 
-        VertexShader = new String(Vertex.GetDecodedData(), StandardCharsets.UTF_8);
-        FragmentShader = new String(Fragment.GetDecodedData(), StandardCharsets.UTF_8);
+
+        VertexShader = new String(org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(Vertex.getFileData()), StandardCharsets.UTF_8);
+        FragmentShader = new String(org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(Fragment.getFileData()), StandardCharsets.UTF_8);
     }
 
     public void Creat() {

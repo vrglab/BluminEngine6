@@ -24,4 +24,8 @@ public class Archive implements Serializable {
         root = root.DirectoryToArchiveFoldor(directory);
         root.name = name;
     }
+
+    public ArchiveFolder getRoot() {
+        return root;
+    }
 }

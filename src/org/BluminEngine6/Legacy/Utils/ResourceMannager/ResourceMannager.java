@@ -67,7 +67,7 @@ public class ResourceMannager {
             Debug.logException(e);
         }
     }
-
+/*
     public Shader GetShader(int file, int Archive) {
         try {
             var arch = archive.GeFileFromArchive(file, Archive);
@@ -99,7 +99,7 @@ public class ResourceMannager {
             return texturesbacth.get(location);
         }
     }
-
+*/
     public AudioFile GetAudio(int file, int Archive) {
         try {
             var arch = archive.GeFileFromArchive(file, Archive);
