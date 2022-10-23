@@ -4,6 +4,7 @@ import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Object.Component;
+import org.BluminEngine6.Render.Color;
 
 public class Camera extends Component {
 
@@ -11,6 +12,7 @@ public class Camera extends Component {
     public float FarPlane = 10000.0f;
     public float NearPlane = 0.1f;
     private Matrix projectionMatrix;
+    public Color clearColor = new Color(0.5f, 0.3f, 0.7f, 1);
 
     public Camera() {
         tag = Application.getTagMannager().GetTag(1);

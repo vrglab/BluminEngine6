@@ -5,6 +5,7 @@ import org.BluminEngine6.Editor.Componants.Camera;
 import org.BluminEngine6.Legacy.Utils.objActionData;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Object.Object;
+import org.BluminEngine6.Render.Color;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ public abstract class Scene extends Object {
     protected objActionData logicsData = new objActionData();
     private HashMap<Integer, BluminBehaviour> gameObjects = new HashMap<>();
     public BluminBehaviour mainCamera = new BluminBehaviour() {
+
 
         Camera main = new Camera();
 
