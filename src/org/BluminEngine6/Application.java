@@ -86,6 +86,12 @@ public class Application {
                 glfwSwapBuffers(display.getWindow());
                 glfwPollEvents();
             }
+
+            if(tempFolder.listFiles().length > 0) {
+                for (File files: tempFolder.listFiles()) {
+                    files.delete();
+                }
+            }
             tempFolder.delete();
             display.Close(OnExit);
         } catch (Exception e) {
