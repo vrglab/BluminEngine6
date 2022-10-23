@@ -87,8 +87,7 @@ public abstract class BluminBehaviour extends Object{
         }
 
     public <t extends Component> t RegisterComponant(t component) {
-
-
+        component.Parent = this;
         AttachedComponants.add(component);
         return component;
     }

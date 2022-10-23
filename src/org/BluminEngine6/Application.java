@@ -9,6 +9,7 @@ import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Object.Tags.TagMannager;
 import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
+import org.BluminEngine6.Render.Renderer;
 import org.BluminEngine6.Render.Resolution;
 import org.BluminEngine6.Utils.Archives.Archive;
 import org.BluminEngine6.Utils.Archives.ArchiveMannager;
@@ -31,14 +32,13 @@ public class Application {
     public static Action<IAction> Awake = new Action<>();
     public static Action<IAction> OnExit = new Action<>();
 
-
     static Metadata metadata;
-
     static List<Archive> resourceMannager = new ArrayList<>();
     static Archive coreResources;
     static Display display;
     static File tempFolder;
-    static TagMannager tagMannager = new TagMannager();;
+    static TagMannager tagMannager = new TagMannager();
+    static Renderer renderer = new Renderer();
 
     public static void Run(Resolution res,DisplayMode dm) {
         try {
@@ -70,7 +70,7 @@ public class Application {
             display.CreateWindow(metadata.GameName, res, dm);
             GLCapabilities cap = GL.createCapabilities();
             GL.setCapabilities(cap);
-            if(!cap.forwardCompatible || !cap.OpenGL20) {
+            if(!cap.forwardCompatible || !cap.OpenGL20 || !cap.GL_ARB_draw_buffers) {
                 Utils.CrashApp(-3, "OpenGL not fully supported on this device");
             }
 
@@ -81,7 +81,7 @@ public class Application {
             Start.Invoke();
             while (!glfwWindowShouldClose(display.getWindow()) ) {
                 Update.Invoke();
-                //renderer.Render();
+                renderer.OnRender();
 
                 glfwSwapBuffers(display.getWindow());
                 glfwPollEvents();
@@ -119,5 +119,9 @@ public class Application {
 
     public static TagMannager getTagMannager() {
         return tagMannager;
+    }
+
+    public static Renderer getRenderer() {
+        return renderer;
     }
 }

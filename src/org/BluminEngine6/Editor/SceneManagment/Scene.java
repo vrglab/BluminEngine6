@@ -124,7 +124,7 @@ public abstract class Scene extends Object {
         Application.Start.addListener(logicsData.OnStart);
         Application.Update.addListener(logicsData.OnUpdate);
         Application.OnExit.addListener(logicsData.OnExit);
-        //TODO: bind the onRender method to the master Renderers event
+        Application.getRenderer().OnRender.addListener(logicsData.OnRender);
     }
 
     public <t extends BluminBehaviour> t RegisterGameObject(t obj) {

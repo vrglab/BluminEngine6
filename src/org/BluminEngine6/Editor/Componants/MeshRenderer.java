@@ -2,6 +2,7 @@ package org.BluminEngine6.Editor.Componants;
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Object.Component;
@@ -58,7 +59,7 @@ public class MeshRenderer extends Component {
             shader.SetUniform("material.reflectivenes", model.getMaterial().reflection);
 
 
-/*
+            /*Lighting data
             shader.SetUniform("levelLightData.sunlight.intensity", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.Intesity);
             shader.SetUniform("levelLightData.sunlight.position", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.transform.position);
             shader.SetUniform("levelLightData.sunlight.color", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.color);
@@ -70,7 +71,7 @@ public class MeshRenderer extends Component {
                 shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".color", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).color);
                 shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".attenuation", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).attenuation);
             }
-*/
+            */
 
             //Set the Textures
             GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -90,6 +91,7 @@ public class MeshRenderer extends Component {
             shader.SetUniform("material.ReflectionsMap", 3);
 
 
+            Debug.log(model.getMesh().getIndecies().length);
             GL11.glDrawElements(GL11.GL_TRIANGLES, model.getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
             shader.Stop();
             if(model.getMaterial().getColor().GetA() < 1) {

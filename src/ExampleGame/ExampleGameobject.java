@@ -26,16 +26,9 @@ public class ExampleGameobject extends BluminBehaviour {
     @Override
     public void Init() {
         Model m = new Model();
-        m.setMesh(1, Application.getCoreResources().getRoot().getFolder(0));
-        try {
-            m.SaveToFile("Dragon");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        m.setMesh(0, Application.getCoreResources().getRoot().getFolder(0));
         mr = new MeshRenderer(m);
-        RegisterComponant(mr);
-
-
+        //RegisterComponant(mr);
     }
 
     @Override
