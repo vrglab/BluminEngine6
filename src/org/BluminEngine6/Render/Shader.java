@@ -39,8 +39,10 @@ public class Shader {
         Fragment = rm.getFile(FragmentObj.getInt("File"));
 
 
-        VertexShader = new String(org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(Vertex.getFileData()), StandardCharsets.UTF_8);
-        FragmentShader = new String(org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(Fragment.getFileData()), StandardCharsets.UTF_8);
+        VertexShader = new String(Vertex.getFileData(), StandardCharsets.UTF_8);
+        FragmentShader = new String(Fragment.getFileData(), StandardCharsets.UTF_8);
+
+
     }
 
     public void Creat() {

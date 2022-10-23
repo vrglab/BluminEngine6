@@ -119,7 +119,7 @@ public class ObjLoader {
         File f = null;
         try{
 
-            ArchiveFile af = new ArchiveFile(obj.getId(),obj.FileName, obj.Extension,  new String(org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(obj.getFileData())), obj.getFolderId());
+            ArchiveFile af = new ArchiveFile(obj.getId(),obj.FileName, obj.Extension,  obj.getFileData(), obj.getFolderId());
              f = ArchiveMannager.LoadArchiveFileToTempFile(af);
             if(!FilenameUtils.getExtension(f.getAbsolutePath()).equals("bmd")) {
                 Debug.log(FilenameUtils.getExtension(f.getAbsolutePath()));

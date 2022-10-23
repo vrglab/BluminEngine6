@@ -54,7 +54,7 @@ public class Texture implements Serializable{
                 height = texture.getHeight();
                 textureId = texture.getTextureID();
 
-                byte[] decodedData = org.BluminEngine6.Utils.Utils.DecodedDataFromBase64(file.getFileData());
+                byte[] decodedData = file.getFileData();
                 decodedbytes = ByteBuffer.allocate(decodedData.length * 4);
                 decodedbytes.put(decodedData);
                 decodedbytes.flip();

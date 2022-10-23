@@ -22,7 +22,7 @@ public class MeshRenderer extends Component {
 
     public MeshRenderer(Model model) {
         this.model = model;
-        shader = ResourceBatch.GetShader(0, Application.getCoreResources().getRoot().getFolder(4));
+        shader = ResourceBatch.GetShader(0, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(1));
     }
 
     @Override

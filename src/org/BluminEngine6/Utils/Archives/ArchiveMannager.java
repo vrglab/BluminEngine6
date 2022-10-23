@@ -23,6 +23,20 @@ public class ArchiveMannager {
         return DecompressAndDecode(fileData);
     }
 
+    public static File WriteArchiveFileToFile(String directory, ArchiveFile file) throws IOException {
+        String location = directory + "/" + file.FileName + "." + file.Extension;
+        File f = new File(location);
+        FileUtils.writeByteArrayToFile(f, file.getFileData());
+        return f;
+    }
+
+    public static File WriteArchiveFileToFile(String directory, ArchiveFile file, UUID ui) throws IOException {
+        String location = directory + "/" + ui.toString() + " " + file.FileName + "." + file.Extension;
+        File f = new File(location);
+        FileUtils.writeByteArrayToFile(f, file.getFileData());
+        return f;
+    }
+
     public static Archive SerializeDirectoryToArchive(String FromDirectory, String ToDirectory) throws IOException {
         Archive archive = DirectoryToArchive(FromDirectory);
         byte[] data = CompressAndEncode(archive);
@@ -75,10 +89,7 @@ public class ArchiveMannager {
 
     public static File LoadArchiveFileToTempFile(ArchiveFile af) throws IOException {
         UUID id = UUID.randomUUID();
-        String location = Application.getTempFolder().getAbsolutePath() + "/" +id.toString() + " " + af.FileName + "." + af.Extension;
-        File f = new File(location);
-        FileUtils.writeByteArrayToFile(f, af.getFileData().getBytes());
-        return f;
+        return WriteArchiveFileToFile(Application.getTempFolder().getAbsolutePath(), af, id);
     }
 
 }

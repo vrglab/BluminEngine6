@@ -5,9 +5,7 @@ import org.BluminEngine6.Utils.Utils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +36,8 @@ public class ArchiveFolder implements Serializable {
 
         int id = FileCounter.getAndIncrement();
         try {
-            ArchiveFile af = new ArchiveFile(id, FilenameUtils.getBaseName(abPath),FilenameUtils.getExtension(abPath), new String(FileUtils.readFileToByteArray(f), StandardCharsets.UTF_8), id);
+            FileReader fr = new FileReader(f);
+            ArchiveFile af = new ArchiveFile(id, FilenameUtils.getBaseName(abPath),FilenameUtils.getExtension(abPath),FileUtils.readFileToByteArray(f), id);
             return af;
         } catch (IOException e) {
             Debug.logException(e);
@@ -72,13 +71,9 @@ public class ArchiveFolder implements Serializable {
     }
     public ArchiveFile CreateEmptyFile(String name, String extension) {
         int id = FileCounter.getAndIncrement();
-        try {
-            ArchiveFile af = new ArchiveFile(id, name,extension, Utils.EncodeStringWithBase64("null"), NULL);
-            files.put(id, af);
-            return af;
-        } catch (IOException e) {
-            return null;
-        }
+        ArchiveFile af = new ArchiveFile(id, name,extension, null, NULL);
+        files.put(id, af);
+        return af;
     }
 
 }
