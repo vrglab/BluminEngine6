@@ -7,7 +7,7 @@ import BluminEngine5.Rendering.Master.Model;
 import BluminEngine5.Rendering.Shaders.Shader;
 import BluminEngine5.Rendering.Texture;*/
 import org.BluminEngine6.Application;
-import org.BluminEngine6.Legacy.Audio.Legacy.AudioFile;
+import org.BluminEngine6.Legacy.Audio.AudioFile;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.Archive;

@@ -1,6 +1,6 @@
 package ExampleGame;
 
-import org.BluminEngine6.Legacy.Audio.Legacy.Mixer;
+import org.BluminEngine6.Legacy.Audio.Mixer;
 import org.BluminEngine6.Editor.SceneManagment.Scene;
 
 public class ExampleScene extends Scene {

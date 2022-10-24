@@ -1,7 +1,7 @@
 package org.BluminEngine6.Utils;
 
 import org.BluminEngine6.Application;
-import org.BluminEngine6.Legacy.Audio.Legacy.AudioFile;
+import org.BluminEngine6.Legacy.Audio.AudioFile;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.Utils;
