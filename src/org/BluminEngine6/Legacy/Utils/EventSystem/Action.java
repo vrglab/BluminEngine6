@@ -73,4 +73,7 @@ public class Action<t> {
     public void setCanInvoke(boolean canInvoke) {
         CanInvoke = canInvoke;
     }
+
+    public void addListener(Object o) {
+    }
 }

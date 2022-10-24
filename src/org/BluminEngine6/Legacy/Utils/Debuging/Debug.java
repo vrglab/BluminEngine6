@@ -1,7 +1,9 @@
 package org.BluminEngine6.Legacy.Utils.Debuging;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
+import org.BluminEngine6.Legacy.Utils.EventSystem.IActionArgBased;
 import org.BluminEngine6.Legacy.Utils.Utils;
 
 import java.io.BufferedWriter;
@@ -17,8 +19,10 @@ public class Debug{
     private static List<String> Log = new ArrayList<>();
     private static List<String> RawLog = new ArrayList<>();
 
-    private static IAction InitAct= () -> {
+    public static Action<String> LogEntery = new Action<>();
+    public static Action<String> ErrorLogEntery = new Action<>();
 
+    private static IAction InitAct= () -> {
         OnExit();
     };
 
@@ -74,6 +78,7 @@ public class Debug{
             Log.add(datString);
             RawLog.add(dat.toString());
         }
+        LogEntery.Invoke(datString);
         System.out.println(datString);
     }
 
@@ -91,6 +96,7 @@ public class Debug{
             Log.add(datString);
             RawLog.add(dat.toString());
         }
+        LogEntery.Invoke(datString);
         System.out.println(datString);
     }
     public static void logError(Object dat) {
@@ -107,6 +113,7 @@ public class Debug{
             Log.add(datString);
             RawLog.add(dat.toString());
         }
+        ErrorLogEntery.Invoke(datString);
         System.err.println(datString);
     }
 
@@ -123,6 +130,7 @@ public class Debug{
             Log.add(datString);
             RawLog.add(dat.toString());
         }
+        ErrorLogEntery.Invoke(datString);
         System.err.println(datString);
         Application.OnExit.Invoke();
     }
@@ -138,6 +146,7 @@ public class Debug{
             Log.add(datString);
             RawLog.add(dat.toString());
         }
+        ErrorLogEntery.Invoke(datString);
         System.err.println(datString);
         Application.OnExit.Invoke();
     }
@@ -153,6 +162,7 @@ public class Debug{
             Log.add(datString);
             RawLog.add(dat.toString());
         }
+        ErrorLogEntery.Invoke(datString);
         System.err.println(datString);
         Application.OnExit.Invoke();
     }
