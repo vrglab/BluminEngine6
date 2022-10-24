@@ -91,7 +91,7 @@ public class MeshRenderer extends Component {
             shader.SetUniform("material.ReflectionsMap", 3);
 
 
-            Debug.log(model.getMesh().getIndecies().length);
+
             GL11.glDrawElements(GL11.GL_TRIANGLES, model.getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
             shader.Stop();
             if(model.getMaterial().getColor().GetA() < 1) {
@@ -109,14 +109,14 @@ public class MeshRenderer extends Component {
 
     @Override
     public void Init() {
-        shader.Creat();
-        model.getMesh().Creat();
-        model.getMaterial().Creat();
+
     }
 
     @Override
     public void PreInit() {
-
+        shader.Creat();
+        model.getMesh().Creat();
+        model.getMaterial().Creat();
     }
 
     @Override

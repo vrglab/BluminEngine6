@@ -32,11 +32,11 @@ public class ExampleGameobject extends BluminBehaviour {
     public void Init() {
 
         Model m = new Model();
-        m.setMesh(0, Application.getCoreResources().getRoot().getFolder(0));
+        m.setMesh(1, Application.getCoreResources().getRoot().getFolder(0));
         mr = new MeshRenderer(m);
         AudioSource s = new AudioSource(0, Application.getCoreResources().getRoot().getFolder(3));
-        RegisterComponant(s);
-        s.Play();
+        RegisterComponant(mr);
+
     }
 
     @Override
