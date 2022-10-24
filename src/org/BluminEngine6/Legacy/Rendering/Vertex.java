@@ -1,7 +1,6 @@
 package org.BluminEngine6.Legacy.Rendering;
 
 import org.BluminEngine6.Legacy.Utils.Math.*;
-import org.BluminEngine6.Render.Color;
 
 import java.io.Serializable;
 

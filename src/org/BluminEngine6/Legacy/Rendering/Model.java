@@ -6,7 +6,6 @@ import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Physics.Colision.Collider;
-import org.BluminEngine6.Render.Color;
 import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.apache.commons.lang3.SerializationUtils;

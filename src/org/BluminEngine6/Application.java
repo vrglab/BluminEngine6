@@ -1,6 +1,5 @@
 package org.BluminEngine6;
 
-import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
@@ -9,17 +8,15 @@ import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Object.Tags.TagMannager;
 import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
-import org.BluminEngine6.Render.Renderer;
+import org.BluminEngine6.Legacy.Rendering.Renderer;
 import org.BluminEngine6.Render.Resolution;
 import org.BluminEngine6.Utils.Archives.Archive;
 import org.BluminEngine6.Utils.Archives.ArchiveMannager;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GLCapabilities;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
