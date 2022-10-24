@@ -1,4 +1,4 @@
-package org.BluminEngine6.Editor.Componants.Audio.Legacy;
+package org.BluminEngine6.Legacy.Audio;
 
 import java.util.ArrayList;
 import java.util.List;

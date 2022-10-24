@@ -1,8 +1,7 @@
 package ExampleGame;
 
-import org.BluminEngine6.Editor.Componants.Audio.Legacy.Mixer;
+import org.BluminEngine6.Legacy.Audio.Legacy.Mixer;
 import org.BluminEngine6.Editor.SceneManagment.Scene;
-import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 
 public class ExampleScene extends Scene {
     ExampleGameobject ego = new ExampleGameobject();

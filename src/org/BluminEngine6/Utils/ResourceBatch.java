@@ -1,12 +1,12 @@
 package org.BluminEngine6.Utils;
 
 import org.BluminEngine6.Application;
-import org.BluminEngine6.Editor.Componants.Audio.Legacy.AudioFile;
+import org.BluminEngine6.Legacy.Audio.Legacy.AudioFile;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.Utils;
-import org.BluminEngine6.Render.Mesh;
-import org.BluminEngine6.Render.Model;
+import org.BluminEngine6.Legacy.Rendering.Mesh;
+import org.BluminEngine6.Legacy.Rendering.Model;
 import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Render.Texture;
 import org.BluminEngine6.Utils.Archives.ArchiveFolder;

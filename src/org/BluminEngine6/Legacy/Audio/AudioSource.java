@@ -1,9 +1,7 @@
-package org.BluminEngine6.Editor.Componants.Audio.Legacy;
+package org.BluminEngine6.Legacy.Audio;
 
 
-import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
-import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.openal.AL10;
@@ -58,9 +56,9 @@ public class AudioSource extends Component {
         buffer = AL10.alGenBuffers();
 
         if(Audiofile.sdata == null) {
-            alBufferData(buffer, AL_FORMAT_STEREO16, Audiofile.data, Audiofile.samplerate);
+            AL10.alBufferData(buffer, AL_FORMAT_STEREO16, Audiofile.data, Audiofile.samplerate);
         } else{
-            alBufferData(buffer, AL_FORMAT_STEREO16, Audiofile.sdata, Audiofile.samplerate);
+            AL10.alBufferData(buffer, AL_FORMAT_STEREO16, Audiofile.sdata, Audiofile.samplerate);
         }
         AL10.alSourcei(id, AL_BUFFER, buffer);
         SetVolume(0.4f);

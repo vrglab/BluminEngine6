@@ -1,11 +1,12 @@
-package org.BluminEngine6.Render;
+package org.BluminEngine6.Legacy.Rendering;
 
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Annotations.MustCreate;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
-import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
+import org.BluminEngine6.Render.Color;
+import org.BluminEngine6.Render.Texture;
 import org.BluminEngine6.Utils.Archives.ArchiveFile;
 import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 import org.BluminEngine6.Utils.ResourceBatch;

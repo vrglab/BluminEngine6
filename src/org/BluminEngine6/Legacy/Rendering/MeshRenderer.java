@@ -1,12 +1,11 @@
-package org.BluminEngine6.Editor.Componants;
+package org.BluminEngine6.Legacy.Rendering;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Editor.Componants.Camera;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
-import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
-import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Object.Component;
-import org.BluminEngine6.Render.Model;
+import org.BluminEngine6.Legacy.Rendering.Model;
 import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.opengl.GL11;
