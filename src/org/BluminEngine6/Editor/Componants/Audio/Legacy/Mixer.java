@@ -43,6 +43,11 @@ public class Mixer extends Component {
 
     @Override
     public void Init() {
+
+    }
+
+    @Override
+    public void PreInit() {
         String DefaultDeviceName = ALC10.alcGetString(0, ALC10.ALC_DEFAULT_DEVICE_SPECIFIER);
         device = ALC10.alcOpenDevice(DefaultDeviceName);
         ALCCapabilities alc =  ALC.createCapabilities(device);
@@ -57,7 +62,7 @@ public class Mixer extends Component {
             Utils.CrashApp(-45, "No Valid OpenAL library found");
         }
 
-        Listener = SceneMannager.getCurrentScene().mainCamera.getComponant(Listener.getClass());
+        Listener = SceneMannager.getCurrentScene().mainCamera.getComponant(listener.class);
         if(Listener == null) {
             Debug.log("Should no longer be null");
             Listener =  SceneMannager.getCurrentScene().mainCamera.RegisterComponant(new listener());
@@ -73,11 +78,6 @@ public class Mixer extends Component {
         } else{
             Debug.logError("There can only be 1 Mixer in Each Scene");
         }
-    }
-
-    @Override
-    public void PreInit() {
-
     }
 
     @Override
