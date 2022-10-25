@@ -1,5 +1,6 @@
 package org.BluminEngine6;
 
+import org.BluminEngine6.Editor.Rendering.MasterRenderer;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
@@ -8,7 +9,7 @@ import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Object.Tags.TagMannager;
 import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
-import org.BluminEngine6.Legacy.Rendering.Renderer;
+import org.BluminEngine6.Render.Renderer;
 import org.BluminEngine6.Render.Resolution;
 import org.BluminEngine6.Utils.Archives.Archive;
 import org.BluminEngine6.Utils.Archives.ArchiveMannager;
@@ -35,7 +36,7 @@ public class Application {
     static Display display;
     static File tempFolder;
     static TagMannager tagMannager = new TagMannager();
-    static Renderer renderer = new Renderer();
+    static Renderer renderer = new MasterRenderer();
 
     public static void Run(Resolution res,DisplayMode dm) {
         try {
@@ -84,16 +85,21 @@ public class Application {
                 glfwPollEvents();
             }
 
-            if(tempFolder.listFiles().length > 0) {
-                for (File files: tempFolder.listFiles()) {
-                    files.delete();
-                }
-            }
-            tempFolder.delete();
+            DestroyTempFolder();
             display.Close(OnExit);
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            DestroyTempFolder();
             Utils.CrashApp(-1, e);
         }
+    }
+
+    private static void DestroyTempFolder() {
+        if(tempFolder.listFiles().length > 0) {
+            for (File files: tempFolder.listFiles()) {
+                files.delete();
+            }
+        }
+        tempFolder.delete();
     }
 
     /**

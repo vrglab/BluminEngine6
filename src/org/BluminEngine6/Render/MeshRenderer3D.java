@@ -1,4 +1,4 @@
-package org.BluminEngine6.Legacy.Rendering;
+package org.BluminEngine6.Render;
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.Componants.Camera;

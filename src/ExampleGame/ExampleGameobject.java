@@ -1,8 +1,7 @@
 package ExampleGame;
 
 import org.BluminEngine6.Application;
-import org.BluminEngine6.Legacy.Rendering.MeshRenderer3D;
-import org.BluminEngine6.Models.Material;
+import org.BluminEngine6.Render.MeshRenderer3D;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Utils.ResourceBatch;
