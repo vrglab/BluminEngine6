@@ -2,6 +2,9 @@ package org.BluminEngine6.Legacy.Utils;
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Math.Vector2;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
+import org.BluminEngine6.Models.Vertex;
 
 
 import java.io.*;
@@ -81,61 +84,60 @@ public class Utils {
         return  s;
     }
 
-    /*
-    public static Vertex[] QuadAsVertex2D() {
+
+    public static Vertex[] Quad() {
         Vertex vpos[] = {
-                new Vertex(new Vector2(-1,1)),
-                new Vertex(new Vector2(-1,-1)),
-                new Vertex(new Vector2(1,1)),
-                new Vertex(new Vector2(1,-1)),
+                new Vertex(new Vector2(-1,1).GetAsVec3()),
+                new Vertex(new Vector2(-1,-1).GetAsVec3()),
+                new Vertex(new Vector2(1,1).GetAsVec3()),
+                new Vertex(new Vector2(1,-1).GetAsVec3()),
         };
         return vpos;
     }
 
+    public static Vertex[] Cube(int SIZE ) {
+                Vertex vpos[] = {
+                new Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
 
-    public static BluminEngine5.Rendering.Vertex[] CubeAsVertex3D(int SIZE ) {
-        BluminEngine5.Rendering.Vertex vpos[] = {
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
 
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
 
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
 
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
 
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE,  SIZE, -SIZE)),
-
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
-                new BluminEngine5.Rendering.Vertex(new Vector3(SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE, -SIZE)),
+                new Vertex(new Vector3(-SIZE, -SIZE,  SIZE)),
+                new Vertex(new Vector3(SIZE, -SIZE,  SIZE)),
 
 
 
@@ -143,7 +145,7 @@ public class Utils {
         return vpos;
     }
 
-
+/*
     public static int CreateCubeMap(int[] File, int[] Archive) {
         int ID = GL11.glGenTextures();
         GL13.glActiveTexture(GL13.GL_TEXTURE4);

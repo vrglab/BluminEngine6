@@ -1,13 +1,12 @@
 package ExampleGame;
 
 import org.BluminEngine6.Application;
-import org.BluminEngine6.Render.MeshRenderer3D;
+import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Utils.ResourceBatch;
 
 public class ExampleGameobject extends BluminBehaviour {
-
 
     @Override
     public void Update() {

@@ -22,7 +22,6 @@ import java.nio.charset.StandardCharsets;
 public class Shader {
     private String VertexShader, FragmentShader, name;
     private int vertexId, fragmentId, programid;
-    private boolean Raytracing;
     ArchiveFile Vertex, Fragment;
 
 
@@ -30,7 +29,6 @@ public class Shader {
         String data = Utils.LoadFile(location);
         JSONObject obj = new JSONObject(data);
         name = obj.getString("name");
-        Raytracing = obj.getBoolean("Raytracing");
 
         JSONObject VertexObj = obj.getJSONObject("Vertex");
         JSONObject FragmentObj = obj.getJSONObject("Fragment");

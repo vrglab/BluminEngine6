@@ -1,2 +1,11 @@
-{System 2022/10/25 10:06:03:63}: Starting BluminEngine6 0.0.1.0_DevSystem
-{System 2022/10/25 10:06:04:64}: Opening game: Development System Version 1.0.0.0_Example
+{System 2022/10/25 10:27:25:2725}: Starting BluminEngine6 0.0.1.0_DevSystem
+{System 2022/10/25 10:27:26:2726}: Opening game: Development System Version 1.0.0.0_Example
+{Error: 2022/10/25 10:27:27:2727}: java.lang.Exception: Fuck you
+org.BluminEngine6.Editor.Rendering.MeshRenderer3D.Update(MeshRenderer3D.java:33)
+org.BluminEngine6.Object.Component.lambda$new$5(Component.java:44)
+org.BluminEngine6.Object.BluminBehaviour.lambda$new$5(BluminBehaviour.java:71)
+org.BluminEngine6.Editor.SceneManagment.Scene.lambda$new$5(Scene.java:107)
+org.BluminEngine6.Legacy.Utils.EventSystem.Action.Invoke(Action.java:21)
+org.BluminEngine6.Application.Run(Application.java:81)
+ExampleGame.Main.main(Main.java:14)
+
