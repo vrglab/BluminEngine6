@@ -5,8 +5,8 @@ import org.BluminEngine6.Legacy.Audio.AudioFile;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.Utils;
-import org.BluminEngine6.Legacy.Rendering.Mesh;
-import org.BluminEngine6.Legacy.Rendering.Model;
+import org.BluminEngine6.Models.Mesh;
+import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Render.Texture;
 import org.BluminEngine6.Utils.Archives.ArchiveFolder;
@@ -123,6 +123,8 @@ public class ResourceBatch {
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(Utils.LoadFileAsStream(f.getAbsolutePath()));
                 var dat = (Model) objectInputStream.readObject();
+                dat.setMaterialRaw(dat.getMaterialRaw());
+                dat.setMeshRaw(dat.getMeshRaw());
                 modelssbacth.put(location,dat);
                 objectInputStream.close();
                 f.delete();
