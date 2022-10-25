@@ -46,28 +46,11 @@ public class Shader {
     public void Creat() {
         programid = GL20.glCreateProgram();
         vertexId = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
-        SourceAndCompile(vertexId, VertexShader);
-        mainCompile(vertexId, VertexShader);
+        setShaderData(VertexShader,vertexId);
 
         fragmentId = GL20.glCreateShader(GL20.GL_FRAGMENT_SHADER);
-        mainCompile(fragmentId, FragmentShader);
+        setShaderData(FragmentShader, fragmentId);
 
-        if(GL20.glGetShaderi(fragmentId, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-            var tempog = FragmentShader;
-            FragmentShader = "#version 460 core \n" + tempog;
-            SourceAndCompile(fragmentId, FragmentShader);
-            Debug.log("Changed the fragment shader version to 460 core");
-            if(GL20.glGetShaderi(fragmentId, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-                Debug.log("Failed to Changed the fragment shader version to 460 core");
-                FragmentShader = "#version 330 core \n" + tempog;
-                SourceAndCompile(fragmentId, FragmentShader);
-                Debug.log("Changed the fragment shader version to 330 core");
-                if(GL20.glGetShaderi(fragmentId, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
-                    Debug.logError(name + ": " +GL20.glGetShaderInfoLog(fragmentId));
-                    Utils.CrashApp(-15, "Failed to compile fragment shader");
-                }
-            }
-        }
 
         GL20.glAttachShader(programid, vertexId);
         GL20.glAttachShader(programid, fragmentId);
@@ -147,7 +130,7 @@ public class Shader {
                     break;
 
             }
-            SourceAndCompile(shader, Fulldata);
+            Source(shader, Fulldata);
             if(GL20.glGetShaderi(shader, GL20.GL_COMPILE_STATUS) != GL11.GL_FALSE) {
                 Compiled = true;
             } else{
@@ -163,7 +146,7 @@ public class Shader {
         }
     }
 
-    private void SourceAndCompile(int shader, String data) {
+    private void Source(int shader, String data) {
         GL20.glShaderSource(shader, data);
         GL20.glCompileShader(shader);
     }
@@ -221,5 +204,23 @@ public class Shader {
         GL20.glDeleteShader(vertexId);
         GL20.glDeleteShader(fragmentId);
         GL20.glDeleteProgram(programid);
+    }
+
+    public void setShaderData(String data, int id){
+        Source(id, data);
+        mainCompile(id, data);
+    }
+
+
+    public String getVertexShader() {
+        return VertexShader;
+    }
+
+    public String getFragmentShader() {
+        return FragmentShader;
+    }
+
+    public String getName() {
+        return name;
     }
 }

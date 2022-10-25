@@ -3,6 +3,7 @@ package org.BluminEngine6.Object;
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.Componants.Transform;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.objActionData;
 
 import java.awt.*;
@@ -13,9 +14,11 @@ public abstract class BluminBehaviour extends Object{
         public objActionData logicsData = new objActionData();
         private List<Component> AttachedComponants = new ArrayList<>();
 
-        public Transform transform = Transform.DefaultZero;
+        public Transform transform;
 
         protected BluminBehaviour() {
+            transform = new Transform(Vector3.Zero,Vector3.Zero,Vector3.Zero);
+            RegisterComponant(transform);
 
             logicsData.OnDestroy = () -> {
                 Destroy();

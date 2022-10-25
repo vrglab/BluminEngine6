@@ -2,6 +2,7 @@ package org.BluminEngine6.Editor.SceneManagment;
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.Componants.Camera;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.objActionData;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Object.Object;
@@ -38,7 +39,7 @@ public abstract class Scene extends Object {
 
         @Override
         public void Init() {
-
+            transform.position = new Vector3(0,0,7);
         }
 
         @Override

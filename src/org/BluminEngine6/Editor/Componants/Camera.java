@@ -15,7 +15,6 @@ public class Camera extends Component {
 
     public Camera() {
         tag = Application.getTagMannager().GetTag(1);
-        transform.position.z = 0;
     }
 
     public Matrix getProjectionMatrix() {
@@ -24,6 +23,7 @@ public class Camera extends Component {
 
     @Override
     public void Update() {
+        transform = Parent.transform;
 
     }
 
