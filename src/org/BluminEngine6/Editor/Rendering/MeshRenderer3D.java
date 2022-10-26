@@ -37,7 +37,8 @@ public class MeshRenderer3D extends Component {
                 shader.Run();
                 shader.SetUniform("transform", Matrix.transform(Parent.transform));
                 shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).getProjectionMatrix());
-                shader.SetUniform("ViewMatrix", Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
+                shader.SetUniform("ViewMatrix",
+                        Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
                         SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.rotation));
                 shader.SetUniform("viewPos", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position);
                 shader.SetUniform("material.ambient", model.getMaterial().getAmbient());
@@ -142,13 +143,12 @@ public class MeshRenderer3D extends Component {
 
     @Override
     public void Init() {
-
+        shader.Creat();
+        model.getMesh().CreatAll();
     }
 
     @Override
     public void PreInit() {
-        shader.Creat();
-        model.getMesh().CreatAll();
     }
 
     @Override

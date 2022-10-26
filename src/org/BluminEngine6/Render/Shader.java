@@ -36,23 +36,18 @@ public class Shader {
         Vertex = rm.getFile(VertexObj.getInt("File"));
         Fragment = rm.getFile(FragmentObj.getInt("File"));
 
-
         VertexShader = new String(Vertex.getFileData(), StandardCharsets.UTF_8);
         FragmentShader = new String(Fragment.getFileData(), StandardCharsets.UTF_8);
-
-
     }
 
     public void Creat() {
         programid = GL20.glCreateProgram();
         vertexId = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
-        setShaderData(VertexShader,vertexId);
+        VertexShader = setShaderData(VertexShader,vertexId);
+        GL20.glAttachShader(programid, vertexId);
 
         fragmentId = GL20.glCreateShader(GL20.GL_FRAGMENT_SHADER);
-        setShaderData(FragmentShader, fragmentId);
-
-
-        GL20.glAttachShader(programid, vertexId);
+        FragmentShader = setShaderData(FragmentShader, fragmentId);
         GL20.glAttachShader(programid, fragmentId);
 
         GL20.glLinkProgram(programid);
@@ -77,7 +72,7 @@ public class Shader {
         return GL20.glGetUniformLocation(programid, n);
     }
 
-    private void mainCompile(int shader, String data) {
+    private String mainCompile(int shader, String data) {
         boolean Compiled = GL20.glGetShaderi(shader, GL20.GL_COMPILE_STATUS) != GL11.GL_FALSE;
         int index = 0;
         var tempog = data;
@@ -143,12 +138,15 @@ public class Shader {
         if(FullyFailed) {
             Debug.logError(name + ": " + GL20.glGetShaderInfoLog(shader));
             Utils.CrashApp(-2, "Shader failed to compile");
+            return "null";
         }
+        return Fulldata;
     }
 
-    private void Source(int shader, String data) {
+    private String Source(int shader, String data) {
         GL20.glShaderSource(shader, data);
         GL20.glCompileShader(shader);
+        return data;
     }
 
     public void SetUniform(String name, int data) {
@@ -206,9 +204,9 @@ public class Shader {
         GL20.glDeleteProgram(programid);
     }
 
-    public void setShaderData(String data, int id){
+    public String setShaderData(String data, int id){
         Source(id, data);
-        mainCompile(id, data);
+        return mainCompile(id, data);
     }
 
 
