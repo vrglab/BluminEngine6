@@ -19,7 +19,7 @@ public class MeshRenderer3D extends Component {
 
     public MeshRenderer3D(Model model) {
         this.model = model;
-        shader = ResourceBatch.GetShader(0, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(1));
+        shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(2));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MeshRenderer3D extends Component {
                 GL30.glDisableVertexAttribArray(1);
                 GL30.glDisableVertexAttribArray(2);
                 GL30.glBindVertexArray(0);
-                shader.Stop();
+               shader.Stop();
             } else{
                 glDepthFunc(GL_LEQUAL);
                 glEnable(GL_DEPTH_TEST);
@@ -82,7 +82,7 @@ public class MeshRenderer3D extends Component {
                     glEnable(GL_BLEND);
                     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
                 }
-                //shader.Run();
+                shader.Run();
                 shader.SetUniform("transform", Matrix.transform(Parent.transform));
                 shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).getProjectionMatrix());
                 shader.SetUniform("ViewMatrix", Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
@@ -127,7 +127,7 @@ public class MeshRenderer3D extends Component {
 
 
                 GL11.glDrawElements(GL11.GL_TRIANGLES, model.getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
-                //shader.Stop();
+                shader.Stop();
                 if(model.getMaterial().getColor().GetA() < 1) {
                     glDisable(GL_BLEND);
                 }
