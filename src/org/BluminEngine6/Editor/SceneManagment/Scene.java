@@ -39,11 +39,11 @@ public abstract class Scene extends Object {
 
         @Override
         public void Init() {
-            transform.position = new Vector3(0,0,7);
+            transform.position = new Vector3(0,0,12);
         }
 
         @Override
-        public void PreInit() {
+        public void Awake() {
             RegisterComponant(main);
         }
 
@@ -74,13 +74,13 @@ public abstract class Scene extends Object {
             OnExit();
         };
 
-        logicsData.OnPreInit = () -> {
+        logicsData.OnAwake = () -> {
             for (BluminBehaviour bb: gameObjects.values()) {
                 if(bb.Active){
-                    bb.logicsData.OnPreInit.Run();
+                    bb.logicsData.OnAwake.Run();
                 }
             }
-            PreInit();
+            Awake();
         };
 
         logicsData.OnRender = () -> {
@@ -121,7 +121,7 @@ public abstract class Scene extends Object {
         };
 
 
-        Application.Awake.addListener(logicsData.OnPreInit);
+        Application.Awake.addListener(logicsData.OnAwake);
         Application.Start.addListener(logicsData.OnStart);
         Application.Update.addListener(logicsData.OnUpdate);
         Application.OnExit.addListener(logicsData.OnExit);

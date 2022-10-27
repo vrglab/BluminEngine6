@@ -27,7 +27,7 @@ public class ExampleScene extends Scene {
     }
 
     @Override
-    public void PreInit() {
+    public void Awake() {
 
     }
 

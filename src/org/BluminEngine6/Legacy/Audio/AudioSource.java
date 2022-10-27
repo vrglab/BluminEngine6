@@ -71,7 +71,7 @@ public class AudioSource extends Component {
     }
 
     @Override
-    public void PreInit() {
+    public void Awake() {
 
     }
 

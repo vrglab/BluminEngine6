@@ -68,11 +68,9 @@ public class Application {
             display.CreateWindow(metadata.GameName, res, dm);
             GLCapabilities cap = GL.createCapabilities();
             GL.setCapabilities(cap);
-            if(!cap.forwardCompatible || !cap.OpenGL20 || !cap.GL_ARB_draw_buffers) {
+            if(!cap.forwardCompatible || !cap.OpenGL11 || !cap.GL_ARB_draw_buffers) {
                 Utils.CrashApp(-3, "OpenGL not fully supported on this device");
             }
-
-
             Awake.Invoke();
 
 

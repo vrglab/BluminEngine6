@@ -16,8 +16,8 @@ import org.BluminEngine6.Legacy.Utils.ResourceMannager.Archive.ArchivedFile;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Models.Mesh;
 import org.BluminEngine6.Models.Model;
+import org.BluminEngine6.Models.Texture;
 import org.BluminEngine6.Render.Shader;
-import org.BluminEngine6.Render.Texture;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 

@@ -47,7 +47,7 @@ public class Mixer extends Component {
     }
 
     @Override
-    public void PreInit() {
+    public void Awake() {
         String DefaultDeviceName = ALC10.alcGetString(0, ALC10.ALC_DEFAULT_DEVICE_SPECIFIER);
         device = ALC10.alcOpenDevice(DefaultDeviceName);
         ALCCapabilities alc =  ALC.createCapabilities(device);

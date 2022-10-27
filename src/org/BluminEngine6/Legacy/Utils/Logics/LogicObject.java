@@ -1,9 +1,7 @@
 package org.BluminEngine6.Legacy.Utils.Logics;
 
 import org.BluminEngine6.Legacy.Utils.objActionData;
-import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Object.Object;
-import org.newdawn.slick.util.Log;
 
 public abstract class LogicObject extends Object {
     public objActionData logicsData = new objActionData();
@@ -18,8 +16,8 @@ public abstract class LogicObject extends Object {
             OnExit();
         };
 
-        logicsData.OnPreInit = () -> {
-            PreInit();
+        logicsData.OnAwake = () -> {
+            Awake();
         };
 
         logicsData.OnRender = () -> {

@@ -6,7 +6,6 @@ import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.objActionData;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,11 +38,11 @@ public abstract class BluminBehaviour extends Object{
                 }
             };
 
-            logicsData.OnPreInit = () -> {
-                    PreInit();
+            logicsData.OnAwake = () -> {
+                    Awake();
                 for (Component c: AttachedComponants) {
                     if(c.Active) {
-                        c.LogicsData.OnPreInit.Run();
+                        c.LogicsData.OnAwake.Run();
                     }
                 }
             };

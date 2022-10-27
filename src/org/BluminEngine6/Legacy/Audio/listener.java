@@ -29,7 +29,7 @@ public class listener extends Component {
     }
 
     @Override
-    public void PreInit() {
+    public void Awake() {
 
     }
 

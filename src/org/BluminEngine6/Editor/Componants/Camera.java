@@ -40,7 +40,7 @@ public class Camera extends Component {
     }
 
     @Override
-    public void PreInit() {
+    public void Awake() {
 
     }
 

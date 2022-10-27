@@ -7,8 +7,8 @@ import org.BluminEngine6.Legacy.Utils.ObjLoader;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Models.Mesh;
 import org.BluminEngine6.Models.Model;
+import org.BluminEngine6.Models.Texture;
 import org.BluminEngine6.Render.Shader;
-import org.BluminEngine6.Render.Texture;
 import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 import org.BluminEngine6.Utils.Archives.ArchiveMannager;
 import org.apache.commons.io.FilenameUtils;
@@ -30,6 +30,7 @@ public class ResourceBatch {
     public static Texture GetTexture(int file, ArchiveFolder folder) {
         var arch = folder.getFile(file);
         var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
+        Debug.log("Getting: "+ arch.FileName + "." + arch.Extension);
         if(!texturesbacth.containsKey(location)) {
             var dat = new Texture(arch);
             texturesbacth.put(location,dat);

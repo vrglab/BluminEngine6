@@ -24,14 +24,12 @@ public abstract class Component extends Object{
 
         };
 
-        LogicsData.OnPreInit = () -> {
-            PreInit();
-
+        LogicsData.OnAwake = () -> {
+            Awake();
         };
 
         LogicsData.OnRender = () -> {
             OnRender();
-
         };
 
         LogicsData.OnSceneLoad = () -> {

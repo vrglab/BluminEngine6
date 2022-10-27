@@ -61,7 +61,7 @@ public class Transform extends Component implements Serializable {
     }
 
     @Override
-    public void PreInit() {
+    public void Awake() {
 
     }
 

@@ -12,7 +12,7 @@ public interface ILogic {
     void Init();
 
     /**The PreInit function is called before the windows is made*/
-    void PreInit();
+    void Awake();
     /**The OnExit function is called before the game closes*/
     void OnExit();
 }
