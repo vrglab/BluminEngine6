@@ -3,8 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/BluminEngine6</output-path>
     <root id="archive" name="BluminEngine6.jar">
       <element id="module-output" name="BluminEngine6" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_Template_Project.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_Core_Dependencies.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_Models_Modual.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
