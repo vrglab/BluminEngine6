@@ -30,7 +30,6 @@ public class ResourceBatch {
     public static Texture GetTexture(int file, ArchiveFolder folder) {
         var arch = folder.getFile(file);
         var location = Application.getTempFolder().getAbsolutePath() +"/Temp " + arch.FileName + "." + arch.Extension;
-        Debug.log("Getting: "+ arch.FileName + "." + arch.Extension);
         if(!texturesbacth.containsKey(location)) {
             var dat = new Texture(arch);
             texturesbacth.put(location,dat);

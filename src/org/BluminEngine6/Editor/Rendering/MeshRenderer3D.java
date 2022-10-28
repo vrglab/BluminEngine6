@@ -77,7 +77,6 @@ public class MeshRenderer3D extends Component {
                 GL30.glEnableVertexAttribArray(2);
                 GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, model.getMesh().getIbo());
 
-
                 if(model.getMaterial().getColor().GetA() < 1) {
                     glEnable(GL_BLEND);
                     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
