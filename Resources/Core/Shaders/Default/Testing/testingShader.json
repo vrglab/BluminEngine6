@@ -1,0 +1,9 @@
+{
+    "name": "Testing Shader",
+    "Vertex": {
+        "File": 2
+    },
+    "Fragment": {
+        "File": 0
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Default Shader",
+    "Vertex": {
+        "File": 2,
+        "Archive": 8
+    },
+    "Fragment": {
+        "File": 1,
+        "Archive": 8
+    }
+}

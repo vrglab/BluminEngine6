@@ -1,0 +1,12 @@
+{
+    "Raytracing": "false",
+    "name": "SkyBox Shader",
+    "Vertex": {
+        "File": 2,
+        "Archive": 7
+    },
+    "Fragment": {
+        "File": 1,
+        "Archive": 7
+    }
+}
