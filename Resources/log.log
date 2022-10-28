@@ -1,6 +1,6 @@
-{System 2022/10/27 21:51:56:5156}: Starting BluminEngine6 0.0.1.0_DevSystem
-{System 2022/10/27 21:51:56:5156}: Opening game: Development System Version 1.0.0.0_Example
-{System 2022/10/27 21:51:57:5157}: Getting: Missing.png
-{System 2022/10/27 21:51:57:5157}: Okay
-{System 2022/10/27 21:51:57:5157}: 1
-{System 2022/10/27 21:51:58:5158}: our pos: Vector3(0.0,0.0,0.0) , Camera pos: Vector3(0.0,0.0,12.0)
+{System 2022/10/28 09:08:04:84}: Starting BluminEngine6 0.0.1.0_DevSystem
+{System 2022/10/28 09:08:05:85}: Opening game: Development System Version 1.0.0.0_Example
+{System 2022/10/28 09:08:07:87}: Getting: Missing.png
+{System 2022/10/28 09:08:07:87}: Okay
+{System 2022/10/28 09:08:07:87}: 1
+{System 2022/10/28 09:08:08:88}: our pos: Vector3(0.0,0.0,0.0) , Camera pos: Vector3(0.0,0.0,0.0)

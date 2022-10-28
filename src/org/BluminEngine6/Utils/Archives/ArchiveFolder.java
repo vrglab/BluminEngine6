@@ -7,7 +7,9 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -20,7 +22,6 @@ public class ArchiveFolder implements Serializable {
     public String name = "";
     private final AtomicInteger FileCounter = new AtomicInteger();
     private final AtomicInteger FolderCounter = new AtomicInteger();
-
     public ArchiveFolder getFolder(int id) {
         return folders.get(id);
     }
@@ -44,7 +45,6 @@ public class ArchiveFolder implements Serializable {
             return null;
         }
     }
-
     public ArchiveFolder DirectoryToArchiveFoldor(String directory) {
         File f = new File(directory);
         String abPath = f.getAbsolutePath();
@@ -74,6 +74,20 @@ public class ArchiveFolder implements Serializable {
         ArchiveFile af = new ArchiveFile(id, name,extension, null, NULL);
         files.put(id, af);
         return af;
+    }
+
+    public String ArchiveToDirectory(String rootDirectory) throws Exception {
+        String directory = rootDirectory + "/" + name;
+
+        for (ArchiveFolder f: folders.values()) {
+            f.ArchiveToDirectory(directory);
+        }
+        for (ArchiveFile file: files.values()) {
+            ArchiveMannager.WriteArchiveFileToFile(directory, file);
+        }
+        File fi = new File(directory);
+        fi.mkdirs();
+        return directory;
     }
 
 }
