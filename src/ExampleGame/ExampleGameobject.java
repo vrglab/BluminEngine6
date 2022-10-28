@@ -14,7 +14,6 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Update() {
-            Debug.log("our pos: " + transform.position + " , Camera pos: " + SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position);
     }
 
     @Override
@@ -29,15 +28,15 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Awake() {
-        //Model ourm = ResourceBatch.GetModel(1, Application.getCoreResources().getRoot().getFolder(1));
-        Model ourm2 = new Model(ResourceBatch.GetMesh(1, Application.getCoreResources().getRoot().getFolder(0)), new Material());
+        Model ourm = ResourceBatch.GetModel(1, Application.getCoreResources().getRoot().getFolder(1));
+        //Model ourm2 = new Model(ResourceBatch.GetMesh(1, Application.getCoreResources().getRoot().getFolder(0)), new Material());
         /*try {
             ourm.SaveToFile("Dragon", Application.getTempFolder().getAbsolutePath());
             ourm2.SaveToFile("Cube", Application.getTempFolder().getAbsolutePath());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }*/
-        MeshRenderer3D mr = new MeshRenderer3D(ourm2);
+        MeshRenderer3D mr = new MeshRenderer3D(ourm);
         RegisterComponant(mr);
     }
 

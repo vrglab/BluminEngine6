@@ -73,8 +73,8 @@ public class MeshRenderer3D extends Component {
                 glEnable(GL_DEPTH_TEST);
                 GL30.glBindVertexArray(model.getMesh().getVao());
                 GL30.glEnableVertexAttribArray(0);
-                ///GL30.glEnableVertexAttribArray(1);
-                //GL30.glEnableVertexAttribArray(2);
+                GL30.glEnableVertexAttribArray(1);
+                GL30.glEnableVertexAttribArray(2);
                 GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, model.getMesh().getIbo());
 
 
@@ -111,7 +111,7 @@ public class MeshRenderer3D extends Component {
                 GL13.glActiveTexture(GL13.GL_TEXTURE0);
                 GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getMaterial().getTexture().getTextureId());
                 shader.SetUniform("material.Texture",  0);
-/*
+
                 GL13.glActiveTexture(GL13.GL_TEXTURE1);
                 GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getMaterial().getDefuseMap().getTextureId());
                 shader.SetUniform("material.diffuse",  1);
@@ -123,7 +123,7 @@ public class MeshRenderer3D extends Component {
                 GL13.glActiveTexture(GL13.GL_TEXTURE3);
                 GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getMaterial().getReflectionsMap().getTextureId());
                 shader.SetUniform("material.ReflectionsMap", 3);
-*/
+
 
 
                 GL11.glDrawElements(GL11.GL_TRIANGLES, model.getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
@@ -135,8 +135,8 @@ public class MeshRenderer3D extends Component {
 
                 GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
                 GL30.glDisableVertexAttribArray(0);
-                //GL30.glDisableVertexAttribArray(1);
-                //GL30.glDisableVertexAttribArray(2);
+                GL30.glDisableVertexAttribArray(1);
+                GL30.glDisableVertexAttribArray(2);
                 GL30.glBindVertexArray(0);
             }
     }
@@ -144,7 +144,7 @@ public class MeshRenderer3D extends Component {
     @Override
     public void Init() {
         shader.Creat();
-        model.getMesh().CreatAll();
+        model.Create();
     }
 
     @Override
