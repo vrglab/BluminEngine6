@@ -22,6 +22,11 @@ public class MeshRenderer3D extends Component {
         shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(2));
     }
 
+    public MeshRenderer3D(Model model, Shader shader) {
+        this.model = model;
+        this.shader = shader;
+    }
+
     @Override
     public void Update() {
 
