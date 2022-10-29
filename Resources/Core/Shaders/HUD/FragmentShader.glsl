@@ -1,4 +1,3 @@
-#version 430 core
 
 in vec2 textureCoords;
 in vec4 color;
