@@ -15,7 +15,6 @@ public class MasterRenderer extends Renderer {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         Color c = SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).clearColor;
         glClearColor(c.GetR(),c.GetG(),c.GetB(),c.GetA());
-
         OnRender.Invoke();
     }
 }

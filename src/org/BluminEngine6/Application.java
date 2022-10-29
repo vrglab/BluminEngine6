@@ -6,6 +6,7 @@ import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
 import org.BluminEngine6.Legacy.Utils.Metadata;
 import org.BluminEngine6.Legacy.Utils.Utils;
+import org.BluminEngine6.Legacy.Utils.Version;
 import org.BluminEngine6.Object.Tags.TagMannager;
 import org.BluminEngine6.Render.Display;
 import org.BluminEngine6.Render.DisplayMode;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_BACK;
 
 public class Application {
     public static Action<IAction> Update = new Action<>();
@@ -30,6 +33,7 @@ public class Application {
     public static Action<IAction> Awake = new Action<>();
     public static Action<IAction> OnExit = new Action<>();
 
+    public static Version version = new Version(0,0,0,0,"Pre-Alpha");
     static Metadata metadata;
     static List<Archive> resourceMannager = new ArrayList<>();
     static Archive coreResources;
@@ -40,7 +44,7 @@ public class Application {
 
     public static void Run(Resolution res,DisplayMode dm) {
         try {
-            Debug.log("Starting BluminEngine6 0.0.1.0_DevSystem");
+            Debug.log("Starting BluminEngine6 " + version);
             metadata = new Metadata("Config.ini");
 
             tempFolder = new File(metadata.ResourceFolder + "/.temp");
@@ -72,7 +76,8 @@ public class Application {
                 Utils.CrashApp(-3, "OpenGL not fully supported on this device");
             }
             Awake.Invoke();
-
+            glEnable(GL_CULL_FACE);
+            glCullFace(GL_BACK);
 
             Start.Invoke();
             while (!glfwWindowShouldClose(display.getWindow()) ) {
@@ -83,6 +88,7 @@ public class Application {
                 glfwPollEvents();
             }
 
+            Debug.log("Closing BluminEngine6 " + version);
             DestroyTempFolder();
             display.Close(OnExit);
         } catch (Throwable e) {

@@ -1,6 +1,9 @@
 {
-    "Raytracing": "false",
     "name": "Default Shader",
-    "Vertex": "Res/Shaders/HUD/VertexShader.glsl",
-    "Fragment": "Res/Shaders/HUD/FragmentShader.glsl"
+    "Vertex": {
+        "File": 2
+    },
+    "Fragment": {
+        "File": 0
+    }
 }

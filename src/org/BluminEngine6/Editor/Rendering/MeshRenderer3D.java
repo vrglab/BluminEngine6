@@ -3,12 +3,15 @@ package org.BluminEngine6.Editor.Rendering;
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.Componants.Camera;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.opengl.*;
+
+import java.util.Arrays;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -34,29 +37,21 @@ public class MeshRenderer3D extends Component {
 
     @Override
     public void OnRender() {
-            if(model.getMesh().getIndecies() == null) {
+            if(model.getMesh().getIndecies() == null || model.getMesh().getIndecies().length <= 0) {
                 DrawWithoutIndecies();
-
             } else{
                 DrawWithIndecies();
             }
     }
 
     private void DrawWithoutIndecies() {
-        GL30.glBindVertexArray(model.getMesh().getVao());
-        GL30.glEnableVertexAttribArray(0);
-        GL30.glEnableVertexAttribArray(1);
-        GL30.glEnableVertexAttribArray(2);
         shader.Run();
+
         shader.SetUniform("transform", Matrix.transform(Parent.transform));
         shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).getProjectionMatrix());
         shader.SetUniform("ViewMatrix",
                 Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
                         SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.rotation));
-        shader.SetUniform("viewPos", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position);
-        shader.SetUniform("material.ambient", model.getMaterial().getAmbient());
-        shader.SetUniform("material.shininess", model.getMaterial().getShine());
-        shader.SetUniform("material.reflectivenes", model.getMaterial().getReflection());
 
         //Set the Textures
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -76,32 +71,31 @@ public class MeshRenderer3D extends Component {
         shader.SetUniform("material.ReflectionsMap", 3);
 
         GL11.glDrawArrays(GL_TRIANGLES, 0, model.getMesh().getVertecies().length);
-        GL30.glDisableVertexAttribArray(0);
-        GL30.glDisableVertexAttribArray(1);
-        GL30.glDisableVertexAttribArray(2);
-        GL30.glBindVertexArray(0);
         shader.Stop();
     }
 
     private void DrawWithIndecies() {
+        shader.Run();
+
         glDepthFunc(GL_LEQUAL);
         glEnable(GL_DEPTH_TEST);
         GL30.glBindVertexArray(model.getMesh().getVao());
         GL30.glEnableVertexAttribArray(0);
         GL30.glEnableVertexAttribArray(1);
         GL30.glEnableVertexAttribArray(2);
+        GL30.glEnableVertexAttribArray(3);
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, model.getMesh().getIbo());
 
         if(model.getMaterial().getColor().GetA() < 1) {
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
-        shader.Run();
+
         shader.SetUniform("transform", Matrix.transform(Parent.transform));
         shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).getProjectionMatrix());
         shader.SetUniform("ViewMatrix", Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
                 SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.rotation));
-        shader.SetUniform("viewPos", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position);
+        /*shader.SetUniform("viewPos", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position);
         shader.SetUniform("material.ambient", model.getMaterial().getAmbient());
         shader.SetUniform("material.shininess", model.getMaterial().getShine());
         shader.SetUniform("material.reflectivenes", model.getMaterial().getReflection());
@@ -119,7 +113,7 @@ public class MeshRenderer3D extends Component {
                 shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".color", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).color);
                 shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".attenuation", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).attenuation);
             }
-            */
+*/
 
         //Set the Textures
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -138,10 +132,8 @@ public class MeshRenderer3D extends Component {
         GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getMaterial().getReflectionsMap().getTextureId());
         shader.SetUniform("material.ReflectionsMap", 3);
 
-
-
         GL11.glDrawElements(GL11.GL_TRIANGLES, model.getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
-        shader.Stop();
+
         if(model.getMaterial().getColor().GetA() < 1) {
             glDisable(GL_BLEND);
         }
@@ -151,7 +143,9 @@ public class MeshRenderer3D extends Component {
         GL30.glDisableVertexAttribArray(0);
         GL30.glDisableVertexAttribArray(1);
         GL30.glDisableVertexAttribArray(2);
+        GL30.glDisableVertexAttribArray(3);
         GL30.glBindVertexArray(0);
+       shader.Stop();
     }
 
     @Override

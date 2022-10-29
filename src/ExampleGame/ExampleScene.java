@@ -5,7 +5,6 @@ import org.BluminEngine6.Editor.SceneManagment.Scene;
 
 public class ExampleScene extends Scene {
     ExampleGameobject ego = new ExampleGameobject();
-    Mixer mix = new Mixer();
 
     public ExampleScene() {
         RegisterGameObject(ego);
