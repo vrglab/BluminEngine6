@@ -12,6 +12,7 @@ import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL15;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;

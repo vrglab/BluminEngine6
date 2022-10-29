@@ -42,7 +42,7 @@ public class Transform extends Component implements Serializable {
         return t;
     }
 
-    public static Transform DefaultZero = new Transform(Vector3.Zero,Vector3.Zero,Vector3.Zero);
+    public static Transform DefaultZero = new Transform(Vector3.Zero,Vector3.Zero, new Vector3(1,1,1));
 
 
     @Override

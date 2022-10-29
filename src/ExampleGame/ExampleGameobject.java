@@ -15,6 +15,10 @@ import org.BluminEngine6.Utils.ResourceBatch;
 
 public class ExampleGameobject extends BluminBehaviour {
 
+    Model ourm2;
+    MeshRenderer3D mr;
+
+
     @Override
     public void Update() {
     }
@@ -31,19 +35,17 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Awake() {
-        /*Model ourm = new Model(new Mesh(Utils.Cube(1)), new Material());
-        Model ourm2 = new Model(ResourceBatch.GetMesh(1, Application.getCoreResources().getRoot().getFolder(0)), new Material());
+        Model ourm = new Model(new Mesh(Utils.Cube(1)), new Material());
+        ourm2 = new Model(ResourceBatch.GetMesh(0, Application.getCoreResources().getRoot().getFolder(0)), new Material());
         /*try {
             ourm.SaveToFile("Dragon", Application.getTempFolder().getAbsolutePath());
             ourm2.SaveToFile("Cube", Application.getTempFolder().getAbsolutePath());
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-        MeshRenderer3D mr = new MeshRenderer3D(ourm);
-        RegisterComponant(mr);*/
+        }*/
 
-        ImageRenderer ir = new ImageRenderer(ResourceBatch.GetTexture(0, Application.getCoreResources().getRoot().getFolder(4)));
-        RegisterComponant(ir);
+        mr = RegisterComponant(new MeshRenderer3D(ourm2));
+
     }
 
     @Override

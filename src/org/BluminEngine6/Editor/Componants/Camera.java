@@ -1,6 +1,7 @@
 package org.BluminEngine6.Editor.Componants;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Legacy.Rendering.Color;
@@ -24,7 +25,6 @@ public class Camera extends Component {
     @Override
     public void Update() {
         transform = Parent.transform;
-
     }
 
     @Override
@@ -34,9 +34,7 @@ public class Camera extends Component {
 
     @Override
     public void Init() {
-        projectionMatrix = Matrix.projection(fov,
-                (Application.getDisplay().getCurentScreenRes().getWIDTH() / Application.getDisplay().getCurentScreenRes().getHIGHT()) + 0.7f,
-                NearPlane,FarPlane);
+        projectionMatrix = Matrix.projection(fov,(Application.getDisplay().getCurentScreenRes().getWIDTH() / Application.getDisplay().getCurentScreenRes().getHIGHT()) + 0.7f,NearPlane,FarPlane);
     }
 
     @Override

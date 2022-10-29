@@ -13,8 +13,8 @@ out vec4 WorldPos;
 out mat4 viewMatrix;
 
 void main() {
-    vec4 worldPos =  transform * vec4(position, 1.0f);
-    gl_Position =  ProjectionMatrix * ViewMatrix * transform  * vec4(position, 1.0f) ;
+    vec4 worldPos = transform * vec4(position, 1.0f);
+    gl_Position =  ProjectionMatrix * ViewMatrix * worldPos;
     color = incolor;
     texCord = textureCord;
     WorldPos = worldPos;

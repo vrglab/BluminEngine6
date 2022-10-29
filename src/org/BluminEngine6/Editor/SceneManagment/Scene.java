@@ -39,7 +39,7 @@ public abstract class Scene extends Object {
 
         @Override
         public void Init() {
-            transform.position = new Vector3(0,0, -12);
+
         }
 
         @Override

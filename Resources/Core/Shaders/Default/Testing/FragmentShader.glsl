@@ -5,11 +5,8 @@ in mat4 viewMatrix;
 
 struct Material {
     sampler2D Texture;
-    vec3 ambient;
     sampler2D  diffuse;
     sampler2D  specular;
-    float shininess;
-    float reflectivenes;
     sampler2D ReflectionsMap;
 };
 

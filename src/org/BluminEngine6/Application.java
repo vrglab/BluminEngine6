@@ -1,9 +1,11 @@
 package org.BluminEngine6;
 
 import org.BluminEngine6.Editor.Rendering.MasterRenderer;
+import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
 import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
+import org.BluminEngine6.Legacy.Utils.Input;
 import org.BluminEngine6.Legacy.Utils.Metadata;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Legacy.Utils.Version;
@@ -16,6 +18,7 @@ import org.BluminEngine6.Utils.Archives.Archive;
 import org.BluminEngine6.Utils.Archives.ArchiveMannager;
 import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLCapabilities;
 
 import java.io.File;
@@ -70,12 +73,44 @@ public class Application {
 
             display = new Display();
             display.CreateWindow(metadata.GameName, res, dm);
+
+
             GLCapabilities cap = GL.createCapabilities();
             GL.setCapabilities(cap);
             if(!cap.forwardCompatible || !cap.OpenGL11 || !cap.GL_ARB_draw_buffers) {
                 Utils.CrashApp(-3, "OpenGL not fully supported on this device");
             }
+
+            glfwSetKeyCallback(display.getWindow(), (window, key, scancode, action, mods) -> {
+                if(action == GLFW_PRESS) {
+                    if(!Input.Instance().Pressed.contains(key)) {
+                        Input.Instance().Pressed.add(key);
+                    }
+                }
+                if(action == GLFW_REPEAT) {
+                    if(Input.Instance().Pressed.contains(key)) {
+                        Input.Instance().Pressed.remove(Input.Instance().Pressed.lastIndexOf(key));
+                    }
+                    if(!Input.Instance().Held.contains(key)) {
+                        Input.Instance().Held.add(key);
+                    }
+                }
+                if(action == GLFW_RELEASE) {
+                    if(Input.Instance().Held.contains(key)) {
+                        Input.Instance().Held.remove(Input.Instance().Held.lastIndexOf(key));
+                    }
+                    if(Input.Instance().Pressed.contains(key)) {
+                        Input.Instance().Pressed.remove(Input.Instance().Pressed.lastIndexOf(key));
+                    }
+                    if(!Input.Instance().Released.contains(key)) {
+                        Input.Instance().Released.add(key);
+                    }
+                }
+            });
+
             Awake.Invoke();
+
+            GL11.glEnable(GL11.GL_DEPTH_TEST);
             glEnable(GL_CULL_FACE);
             glCullFace(GL_BACK);
 

@@ -11,6 +11,7 @@ import org.BluminEngine6.Render.Shader;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.opengl.*;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -37,11 +38,11 @@ public class MeshRenderer3D extends Component {
 
     @Override
     public void OnRender() {
-            if(model.getMesh().getIndecies() == null || model.getMesh().getIndecies().length <= 0) {
-                DrawWithoutIndecies();
-            } else{
-                DrawWithIndecies();
-            }
+        if(model.getMesh().getIndecies() == null || model.getMesh().getIndecies().length <= 0) {
+            DrawWithoutIndecies();
+        } else{
+            DrawWithIndecies();
+        }
     }
 
     private void DrawWithoutIndecies() {
@@ -90,29 +91,34 @@ public class MeshRenderer3D extends Component {
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
-
-        shader.SetUniform("transform", Matrix.transform(Parent.transform));
-        shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).getProjectionMatrix());
-        shader.SetUniform("ViewMatrix", Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
-                SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.rotation));
-        /*shader.SetUniform("viewPos", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position);
-        shader.SetUniform("material.ambient", model.getMaterial().getAmbient());
-        shader.SetUniform("material.shininess", model.getMaterial().getShine());
-        shader.SetUniform("material.reflectivenes", model.getMaterial().getReflection());
+        var camera = SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class);
+        Matrix view  = Matrix.view(camera.transform.position, camera.transform.rotation);
+        Matrix projection = camera.getProjectionMatrix();
+        Matrix trnasform = Matrix.transform(Parent.transform);
 
 
-            /*Lighting data
-            shader.SetUniform("levelLightData.sunlight.intensity", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.Intesity);
-            shader.SetUniform("levelLightData.sunlight.position", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.transform.position);
-            shader.SetUniform("levelLightData.sunlight.color", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.color);
 
-            shader.SetUniform("pointLightsIntheLevel", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.getAmnt());
-            for (int i = 0; i < SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.getAmnt(); i++) {
-                shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".position", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).transform.position);
-                shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".intensity", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).Intesity);
-                shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".color", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).color);
-                shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".attenuation", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).attenuation);
-            }
+        shader.SetUniform("transform", trnasform);
+        shader.SetUniform("ProjectionMatrix", projection);
+        shader.SetUniform("ViewMatrix", view);
+      /*  shader.SetUniform("viewPos", SceneManager.GetCurent().GetActiveScene().ActiveCamera.transform.position);
+        shader.SetUniform("material.ambient", model.getMaterial().Ambient);
+        shader.SetUniform("material.shininess", model.getMaterial().Shine);
+        shader.SetUniform("material.reflectivenes", model.getMaterial().reflection);
+
+
+
+        shader.SetUniform("levelLightData.sunlight.intensity", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.Intesity);
+        shader.SetUniform("levelLightData.sunlight.position", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.transform.position);
+        shader.SetUniform("levelLightData.sunlight.color", SceneManager.GetCurent().GetActiveScene().LightObjects.SceneSun.color);
+
+        shader.SetUniform("pointLightsIntheLevel", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.getAmnt());
+        for (int i = 0; i < SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.getAmnt(); i++) {
+            shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".position", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).transform.position);
+            shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".intensity", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).Intesity);
+            shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".color", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).color);
+            shader.SetUniform("levelLightData.pointlights" + "[" + i + "]" +".attenuation", SceneManager.GetCurent().GetActiveScene().LightObjects.PointLights.GetLight(i).attenuation);
+        }
 */
 
         //Set the Textures
@@ -131,6 +137,7 @@ public class MeshRenderer3D extends Component {
         GL13.glActiveTexture(GL13.GL_TEXTURE3);
         GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getMaterial().getReflectionsMap().getTextureId());
         shader.SetUniform("material.ReflectionsMap", 3);
+
 
         GL11.glDrawElements(GL11.GL_TRIANGLES, model.getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
 

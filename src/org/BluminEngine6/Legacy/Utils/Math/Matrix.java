@@ -100,7 +100,6 @@ public class Matrix {
 
         return result;
     }
-
     public static Matrix transform(Transform transform) {
         Matrix result = Matrix.identity();
         Vector3 position = transform.position;
@@ -115,12 +114,11 @@ public class Matrix {
 
         Matrix scaleMatrix = Matrix.scale(scale);
 
-        Matrix rotationMatrix = Math.multiply(rotXMatrix, Math.multiply(rotYMatrix, rotZMatrix));
+        Matrix rotationMatrix = Math.multiply(rotXMatrix,  Math.multiply(rotYMatrix, rotZMatrix));
 
         result = Math.multiply(translationMatrix, Math.multiply(rotationMatrix, scaleMatrix));
         return result;
     }
-
     public static Matrix transform(Vector2 pos, Vector3 rotatio ,Vector2 scal) {
         Matrix result = Matrix.identity();
         Vector2 position = pos;
@@ -140,7 +138,6 @@ public class Matrix {
         result = Math.multiply(translationMatrix, Math.multiply(rotationMatrix, scaleMatrix));
         return result;
     }
-
     public static Matrix projection(float fov, float aspect, float near, float far) {
         Matrix result = Matrix.identity();
 
@@ -156,7 +153,6 @@ public class Matrix {
 
         return result;
     }
-
     public static Matrix view(Vector3 position, Vector3 rotation) {
         Matrix result = Matrix.identity();
 
@@ -172,7 +168,6 @@ public class Matrix {
 
         return result;
     }
-
     public float Get(int x, int y) {
         return elements[y * SIZE + x];
     }
