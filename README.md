@@ -4,3 +4,5 @@ Created and developed sowly by me( Vrglab )
 
 # libaries
 * Lwjgl3
+* Apache
+* Physx
