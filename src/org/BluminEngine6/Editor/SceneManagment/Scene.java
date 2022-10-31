@@ -12,46 +12,7 @@ import java.util.HashMap;
 public abstract class Scene extends Object {
     protected objActionData logicsData = new objActionData();
     private HashMap<Integer, BluminBehaviour> gameObjects = new HashMap<>();
-    public BluminBehaviour mainCamera = new BluminBehaviour() {
-
-
-        Camera main = new Camera();
-
-        @Override
-        public void SceneLoad() {
-
-        }
-
-        @Override
-        public void Destroy() {
-
-        }
-
-        @Override
-        public void Update() {
-
-        }
-
-        @Override
-        public void OnRender() {
-
-        }
-
-        @Override
-        public void Init() {
-
-        }
-
-        @Override
-        public void Awake() {
-            RegisterComponant(main);
-        }
-
-        @Override
-        public void OnExit() {
-
-        }
-    };
+    public Camera mainCamera = new Camera();
 
     public Scene() {
         RegisterGameObject(mainCamera);

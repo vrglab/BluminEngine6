@@ -10,13 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BluminBehaviour extends Object{
-        public objActionData logicsData = new objActionData();
-        private List<Component> AttachedComponants = new ArrayList<>();
+        public objActionData logicsData;
+        private List<Component> AttachedComponants;
 
         public Transform transform;
 
         protected BluminBehaviour() {
-            transform = new Transform(Vector3.Zero,Vector3.Zero,Vector3.Zero);
+            logicsData = new objActionData();
+            AttachedComponants = new ArrayList<>();
+            transform = new Transform();
             RegisterComponant(transform);
 
             logicsData.OnDestroy = () -> {
@@ -89,7 +91,9 @@ public abstract class BluminBehaviour extends Object{
         }
 
     public <t extends Component> t RegisterComponant(t component) {
+        Debug.log(this + "_" + component);
         component.Parent = this;
+        component.transform = transform;
         AttachedComponants.add(component);
         return component;
     }

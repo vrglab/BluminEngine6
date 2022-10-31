@@ -1,8 +1,8 @@
 package org.BluminEngine6.Legacy.Audio;
 
 
+import org.BluminEngine6.Archives.ArchiveFolder;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
-import org.BluminEngine6.Utils.Archives.ArchiveFolder;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.openal.AL10;
 

@@ -5,6 +5,7 @@ import org.BluminEngine6.Editor.Componants.Camera;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Render.Shader;
@@ -23,7 +24,7 @@ public class MeshRenderer3D extends Component {
 
     public MeshRenderer3D(Model model) {
         this.model = model;
-        shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(2));
+        //shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(2));
     }
 
     public MeshRenderer3D(Model model, Shader shader) {
@@ -49,10 +50,10 @@ public class MeshRenderer3D extends Component {
         shader.Run();
 
         shader.SetUniform("transform", Matrix.transform(Parent.transform));
-        shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).getProjectionMatrix());
+        shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getProjectionMatrix());
         shader.SetUniform("ViewMatrix",
-                Matrix.view(SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.position,
-                        SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class).transform.rotation));
+                Matrix.view(SceneMannager.getCurrentScene().mainCamera.transform.position,
+                        SceneMannager.getCurrentScene().mainCamera.transform.rotation));
 
         //Set the Textures
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -91,12 +92,12 @@ public class MeshRenderer3D extends Component {
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         }
-        var camera = SceneMannager.getCurrentScene().mainCamera.getComponant(Camera.class);
+        var camera = SceneMannager.getCurrentScene().mainCamera;
         Matrix view  = Matrix.view(camera.transform.position, camera.transform.rotation);
         Matrix projection = camera.getProjectionMatrix();
         Matrix trnasform = Matrix.transform(Parent.transform);
 
-
+        Debug.log(Arrays.toString(trnasform.Get()));
 
         shader.SetUniform("transform", trnasform);
         shader.SetUniform("ProjectionMatrix", projection);

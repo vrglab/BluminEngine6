@@ -1,12 +1,16 @@
 package org.BluminEngine6.Editor.Componants;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Input;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
+import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Legacy.Rendering.Color;
+import org.lwjgl.glfw.GLFW;
 
-public class Camera extends Component {
+public class Camera extends BluminBehaviour {
 
     public float fov = 90;
     public float FarPlane = 10000.0f;
@@ -24,7 +28,24 @@ public class Camera extends Component {
 
     @Override
     public void Update() {
-        transform = Parent.transform;
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_A)){
+           transform.position.x -= 0.01;
+        }
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_W)){
+            transform.position.z -= 0.01;
+        }
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_S)){
+           transform.position.z += 0.01;
+        }
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_D)){
+           transform.position.x += 0.01;
+        }
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_SPACE)){
+           transform.position.y += 0.01;
+        }
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_LEFT_SHIFT)){
+            transform.position.y -= 0.01;
+        }
     }
 
     @Override

@@ -8,8 +8,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.io.Serializable;
 
 public abstract class Object extends java.lang.Object implements IObjLogic, Serializable {
-    private final Class<? extends Object> This = getClass();
-    public String name = This.getName();
+
+    public String name = getClass().getSimpleName();
     public boolean Active = true;
     public Tag tag = Application.getTagMannager().GetTag(0);
 }

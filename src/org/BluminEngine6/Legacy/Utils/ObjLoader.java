@@ -1,5 +1,7 @@
 package org.BluminEngine6.Legacy.Utils;
 
+import org.BluminEngine6.Archives.ArchiveFile;
+import org.BluminEngine6.Archives.ArchiveMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector2;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
@@ -8,8 +10,6 @@ import org.BluminEngine6.Legacy.Utils.ResourceMannager.ResourceMannager;
 import org.BluminEngine6.Models.Mesh;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Models.Vertex;
-import org.BluminEngine6.Utils.Archives.ArchiveFile;
-import org.BluminEngine6.Utils.Archives.ArchiveMannager;
 import org.apache.commons.io.FilenameUtils;
 import org.lwjgl.assimp.*;
 

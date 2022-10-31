@@ -57,7 +57,7 @@ public class ImageRenderer extends Component {
 
     @Override
     public void Init() {
-        shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(1));
+        //shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(1));
         shader.Creat();
         mesh.CreatAll();
         texture.Create();

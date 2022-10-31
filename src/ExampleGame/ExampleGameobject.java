@@ -2,10 +2,12 @@ package ExampleGame;
 
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.Componants.Camera;
+import org.BluminEngine6.Editor.Componants.Transform;
 import org.BluminEngine6.Editor.Rendering.ImageRenderer;
 import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Models.Material;
 import org.BluminEngine6.Models.Mesh;

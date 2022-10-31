@@ -8,7 +8,7 @@ public abstract class Component extends Object{
     protected objActionData LogicsData = new objActionData();
     protected BluminBehaviour Parent;
 
-    public Transform transform = Transform.DefaultZero;
+    public Transform transform;
 
     public Component() {
         tag = Application.getTagMannager().GetTag(2);
