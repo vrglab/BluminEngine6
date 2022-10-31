@@ -45,7 +45,6 @@ public class ExampleGameobject extends BluminBehaviour {
     public void Awake() {
         Model ourm = new Model(ResourceBatch.GetMesh(0, Application.getCoreResources().getRoot().getFolder(0)), new Material());
         ourm2 = ResourceBatch.GetModel(1, Application.getCoreResources().getRoot().getFolder(1));
-        Debug.log(ourm2.getMaterial().getReflection());
         /*try {
             ourm.SaveToFile("Cube", Application.getTempFolder().getAbsolutePath());
             ourm2.SaveToFile("Dragon", Application.getTempFolder().getAbsolutePath());
