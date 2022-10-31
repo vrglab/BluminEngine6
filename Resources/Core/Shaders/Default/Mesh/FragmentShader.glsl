@@ -36,13 +36,13 @@ struct LevelLightData {
 
 
 uniform Material material;
-/*uniform LevelLightData levelLightData;
+uniform LevelLightData levelLightData;
 uniform int pointLightsIntheLevel;
 uniform bool VolumLight;
-*/
+
 
 out vec4 outColor;
-/*
+
 vec4 Defuse(vec3 normal, vec3 pos, float intensity, vec4 color) {
     vec3 nomr = normalize(normal);
     vec3 lightpos =  normalize(pos - WorldPos.xyz);
@@ -123,11 +123,8 @@ vec4 reflections(){
     vec3 worldR = inverse(mat3(viewMatrix)) * viewR * material.reflectivenes;
     return vec4(worldR * vec3(texture(material.ReflectionsMap, texCord)),1.0);
 }
-*/
-void main() {
-    outColor = texture(material.Texture, texCord);
 
-/*
+void main() {
     if(material.shininess > 0) {
         vec3 ambient =  material.ambient * texture(material.Texture, texCord).xyz;
 
@@ -154,8 +151,4 @@ void main() {
 
         outColor =totalLighting * vec4(ambient, 1.0);
     }
-
-*/
-
-
 }

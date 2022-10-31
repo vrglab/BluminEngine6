@@ -100,7 +100,7 @@ public class MeshRenderer3D extends Component {
         shader.SetUniform("transform", trnasform);
         shader.SetUniform("ProjectionMatrix", projection);
         shader.SetUniform("ViewMatrix", view);
-      /*  shader.SetUniform("viewPos", SceneManager.GetCurent().GetActiveScene().ActiveCamera.transform.position);
+      /*shader.SetUniform("viewPos", SceneManager.GetCurent().GetActiveScene().ActiveCamera.transform.position);
         shader.SetUniform("material.ambient", model.getMaterial().Ambient);
         shader.SetUniform("material.shininess", model.getMaterial().Shine);
         shader.SetUniform("material.reflectivenes", model.getMaterial().reflection);

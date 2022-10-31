@@ -18,7 +18,7 @@ void main() {
     gl_Position =  ProjectionMatrix * ViewMatrix * transform  * vec4(position, 1.0f) ;
     color = incolor;
     texCord = textureCord;
-    //Normal = (ProjectionMatrix * transform * vec4(normal + position,1.0)).xyz;
+    Normal = vec3(ProjectionMatrix * transform * vec4(normal + position,1.0));
     WorldPos = worldPos;
     viewMatrix = ViewMatrix;
 }
