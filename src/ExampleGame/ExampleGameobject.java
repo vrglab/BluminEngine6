@@ -9,6 +9,7 @@ import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Audio.AudioSource;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
+import org.BluminEngine6.Legacy.Utils.Input;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.Utils;
 import org.BluminEngine6.Models.Material;
@@ -16,6 +17,7 @@ import org.BluminEngine6.Models.Mesh;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Utils.ResourceBatch;
+import org.lwjgl.glfw.GLFW;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -28,7 +30,15 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Update() {
-
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_Q)) {
+            as.Pause();
+        }
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_T)) {
+            as.Play();
+        }
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_Y)) {
+            as.Stop();
+        }
     }
 
     @Override
@@ -69,6 +79,5 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Destroy() {
-
     }
 }

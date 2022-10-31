@@ -22,12 +22,12 @@ public abstract class BluminBehaviour extends Object{
             RegisterComponent(transform);
 
             logicsData.OnDestroy = () -> {
-                Destroy();
                 for (Component c: AttachedComponants) {
                     if(c.Active) {
                         c.LogicsData.OnDestroy.Run();
                     }
                 }
+                Destroy();
             };
 
             logicsData.OnExit = () -> {
@@ -100,6 +100,21 @@ public abstract class BluminBehaviour extends Object{
     public <t extends Component> void UnregisterComponant(t component) {
         if(AttachedComponants.contains(component)) {
             AttachedComponants.remove(AttachedComponants.lastIndexOf(component));
+        }
+    }
+
+    public void Enable() {
+        if(Active == false) {
+            Active = true;
+            logicsData.OnAwake.Run();
+            logicsData.OnStart.Run();
+        }
+    }
+
+    public void Disable() {
+        if(Active == true) {
+            logicsData.OnDestroy.Run();
+            Active = false;
         }
     }
 

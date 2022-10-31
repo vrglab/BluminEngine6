@@ -20,7 +20,12 @@ public class ExampleScene extends Scene {
 
     @Override
     public void Update() {
-
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_E)) {
+            ego.Enable();
+        }
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_R)) {
+            ego.Disable();
+        }
     }
 
     @Override
