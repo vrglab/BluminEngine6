@@ -1,11 +1,13 @@
 package ExampleGame;
 
 import org.BluminEngine6.Application;
+import org.BluminEngine6.Audio.AudioSystem;
 import org.BluminEngine6.Editor.Componants.Camera;
 import org.BluminEngine6.Editor.Componants.Transform;
 import org.BluminEngine6.Editor.Rendering.ImageRenderer;
 import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
+import org.BluminEngine6.Audio.AudioSource;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Legacy.Utils.Utils;
@@ -15,14 +17,20 @@ import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Utils.ResourceBatch;
 
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+
 public class ExampleGameobject extends BluminBehaviour {
 
     Model ourm2;
     MeshRenderer3D mr;
-
+    AudioSource as;
 
     @Override
     public void Update() {
+        if(!as.isPlaying()) {
+            as.Play();
+        }
     }
 
     @Override
@@ -45,8 +53,9 @@ public class ExampleGameobject extends BluminBehaviour {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }*/
-
         mr = RegisterComponent(new MeshRenderer3D(ourm2));
+
+        as = RegisterComponent(new AudioSource(1, Application.getCoreResources().getRoot().getFolder(3)));
 
     }
 

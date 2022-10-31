@@ -20,7 +20,7 @@ public class AudioSource extends Component {
 
     public AudioSource(int file, ArchiveFolder rm) {
         try {
-            Audiofile = ResourceBatch.GetAudio(file, rm);
+           // Audiofile = ResourceBatch.GetAudio(file, rm);
             if(Mixer.instance == null) {
                 Debug.logError("Mixer is required in the scene for audio playing");
                 return;

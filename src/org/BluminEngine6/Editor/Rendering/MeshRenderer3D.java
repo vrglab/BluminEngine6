@@ -96,7 +96,6 @@ public class MeshRenderer3D extends Component {
         Matrix view  = Matrix.view(camera.transform.position, camera.transform.rotation);
         Matrix projection = camera.getProjectionMatrix();
         Matrix trnasform = Matrix.transform(transform);
-        Debug.log(transform.position);
 
         shader.SetUniform("transform", trnasform);
         shader.SetUniform("ProjectionMatrix", projection);

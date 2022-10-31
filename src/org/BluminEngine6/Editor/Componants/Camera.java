@@ -1,7 +1,9 @@
 package org.BluminEngine6.Editor.Componants;
 
+import ExampleGame.ExampleScene;
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
+import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Input;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
@@ -28,7 +30,6 @@ public class Camera extends BluminBehaviour {
 
     @Override
     public void Update() {
-        Debug.log(transform.position);
         if(Input.Instance().WasHeld(GLFW.GLFW_KEY_A)){
            transform.position.x -= 0.01;
         }
@@ -46,6 +47,9 @@ public class Camera extends BluminBehaviour {
         }
         if(Input.Instance().WasHeld(GLFW.GLFW_KEY_LEFT_SHIFT)){
             transform.position.y -= 0.01;
+        }
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_ESCAPE)){
+            SceneMannager.ChangeScene(new ExampleScene());
         }
     }
 

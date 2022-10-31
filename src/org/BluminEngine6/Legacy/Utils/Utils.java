@@ -59,7 +59,11 @@ public class Utils {
     }
 
     public static void CrashApp(int status, Throwable e) {
-        Debug.logException(e.getMessage(), e.getStackTrace());
+        if(e.getMessage() != null) {
+            Debug.logException(e.getMessage(), e.getStackTrace());
+        } else{
+            Debug.logException(e.getCause().getMessage(), e.getStackTrace());
+        }
         Application.OnExit.Invoke();
         System.exit(status);
     }

@@ -11,7 +11,7 @@ public class listener extends Component {
     @Override
     public void Update() {
         try {
-            //alListener3f(AL_POSITION, Parent.transform.position.x, Parent.transform.position.y, Parent.transform.position.z);
+            alListener3f(AL_POSITION, Parent.transform.position.x, Parent.transform.position.y, Parent.transform.position.z);
             alListener3f(AL_VELOCITY, 0, 0, 0);
         } catch (Exception e) {
             Debug.logException(e);

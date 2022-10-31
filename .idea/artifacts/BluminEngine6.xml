@@ -7,6 +7,8 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_ComponantAndClassSerialization_Modual.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_Core_Dependencies.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_Models_Modual.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_Audio_Modual.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Lib/BM6_BufferingManagement_Modual.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

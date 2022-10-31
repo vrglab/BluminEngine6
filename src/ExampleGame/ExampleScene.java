@@ -1,5 +1,6 @@
 package ExampleGame;
 
+import org.BluminEngine6.Audio.AudioSystem;
 import org.BluminEngine6.Editor.Componants.Transform;
 import org.BluminEngine6.Legacy.Audio.Mixer;
 import org.BluminEngine6.Editor.SceneManagment.Scene;
@@ -10,8 +11,11 @@ import org.lwjgl.glfw.GLFW;
 public class ExampleScene extends Scene {
     ExampleGameobject ego = new ExampleGameobject();
 
+    AudioSystem ass = new AudioSystem();
+
     public ExampleScene() {
         RegisterGameObject(ego);
+        RegisterGameObject(ass);
     }
 
     @Override
