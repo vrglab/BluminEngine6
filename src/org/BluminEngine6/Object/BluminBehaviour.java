@@ -19,7 +19,7 @@ public abstract class BluminBehaviour extends Object{
             logicsData = new objActionData();
             AttachedComponants = new ArrayList<>();
             transform = new Transform();
-            RegisterComponant(transform);
+            RegisterComponent(transform);
 
             logicsData.OnDestroy = () -> {
                 Destroy();
@@ -90,8 +90,7 @@ public abstract class BluminBehaviour extends Object{
             tag = Application.getTagMannager().GetTag(0);
         }
 
-    public <t extends Component> t RegisterComponant(t component) {
-        Debug.log(this + "_" + component);
+    public <t extends Component> t RegisterComponent(t component) {
         component.Parent = this;
         component.transform = transform;
         AttachedComponants.add(component);

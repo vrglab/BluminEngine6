@@ -24,7 +24,7 @@ public class MeshRenderer3D extends Component {
 
     public MeshRenderer3D(Model model) {
         this.model = model;
-        //shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(2));
+        shader = ResourceBatch.GetShader(1, Application.getCoreResources().getRoot().getFolder(2).getFolder(0).getFolder(2));
     }
 
     public MeshRenderer3D(Model model, Shader shader) {
@@ -95,9 +95,8 @@ public class MeshRenderer3D extends Component {
         var camera = SceneMannager.getCurrentScene().mainCamera;
         Matrix view  = Matrix.view(camera.transform.position, camera.transform.rotation);
         Matrix projection = camera.getProjectionMatrix();
-        Matrix trnasform = Matrix.transform(Parent.transform);
-
-        Debug.log(Arrays.toString(trnasform.Get()));
+        Matrix trnasform = Matrix.transform(transform);
+        Debug.log(transform.position);
 
         shader.SetUniform("transform", trnasform);
         shader.SetUniform("ProjectionMatrix", projection);

@@ -28,6 +28,7 @@ public class Camera extends BluminBehaviour {
 
     @Override
     public void Update() {
+        Debug.log(transform.position);
         if(Input.Instance().WasHeld(GLFW.GLFW_KEY_A)){
            transform.position.x -= 0.01;
         }

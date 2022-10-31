@@ -8,19 +8,19 @@ import javax.vecmath.Quat4f;
 import java.io.Serializable;
 
 public class Transform extends Component implements Serializable {
-    public Vector3 position = Vector3.Zero;
-    public Vector3 rotation = Vector3.Zero;
-    public Vector3 scale = Vector3.Zero;
+    public Vector3 position;
+    public Vector3 rotation;
+    public Vector3 scale;
 
     public Transform() {
-        position = Vector3.Zero;
-        rotation = Vector3.Zero;
+        position = new Vector3(0,0,0);
+        rotation = new Vector3(0,0,0);
         scale = new Vector3(1,1,1);
     }
 
     public Transform(Vector3 position) {
         this.position = position;
-        rotation = Vector3.Zero;
+        rotation = new Vector3(0,0,0);
         scale = new Vector3(1,1,1);
     }
     public Transform(Vector3 position, Vector3 rotation) {
@@ -42,7 +42,7 @@ public class Transform extends Component implements Serializable {
         return t;
     }
 
-    public static Transform DefaultZero = new Transform(Vector3.Zero,Vector3.Zero, new Vector3(1,1,1));
+    public static Transform DefaultZero = new Transform(new Vector3(0,0,0),new Vector3(0,0,0), new Vector3(1,1,1));
 
 
     @Override

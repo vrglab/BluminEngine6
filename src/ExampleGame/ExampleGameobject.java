@@ -46,7 +46,7 @@ public class ExampleGameobject extends BluminBehaviour {
             throw new RuntimeException(e);
         }*/
 
-        mr = RegisterComponant(new MeshRenderer3D(ourm2));
+        mr = RegisterComponent(new MeshRenderer3D(ourm2));
 
     }
 

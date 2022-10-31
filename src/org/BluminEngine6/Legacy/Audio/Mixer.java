@@ -65,7 +65,7 @@ public class Mixer extends Component {
         Listener = SceneMannager.getCurrentScene().mainCamera.getComponant(listener.class);
         if(Listener == null) {
             Debug.log("Should no longer be null");
-            Listener =  SceneMannager.getCurrentScene().mainCamera.RegisterComponant(new listener());
+            Listener =  SceneMannager.getCurrentScene().mainCamera.RegisterComponent(new listener());
             if(Listener == null) {
                 Utils.CrashApp(-50, "Mixer failed to find Listener");
             }

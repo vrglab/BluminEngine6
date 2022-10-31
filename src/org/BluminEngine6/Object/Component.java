@@ -15,13 +15,11 @@ public abstract class Component extends Object{
 
         LogicsData.OnDestroy = () -> {
             Destroy();
-
         };
 
         LogicsData.OnExit = () -> {
             LogicsData.OnDestroy.Run();
             OnExit();
-
         };
 
         LogicsData.OnAwake = () -> {
@@ -34,7 +32,6 @@ public abstract class Component extends Object{
 
         LogicsData.OnSceneLoad = () -> {
             SceneLoad();
-
         };
 
         LogicsData.OnUpdate = () -> {
@@ -44,12 +41,8 @@ public abstract class Component extends Object{
         };
 
         LogicsData.OnStart = () -> {
-
             Init();
-
         };
 
     }
-
-
 }
