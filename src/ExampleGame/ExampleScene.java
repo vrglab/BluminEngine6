@@ -50,7 +50,6 @@ public class ExampleScene extends Scene {
 
     @Override
     public void Init() {
-            ego.collider.Debug = true;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.bulletphysics.linearmath.Transform;
 import org.BluminEngine6.Application;
 import org.BluminEngine6.Audio.AudioSystem;
 import org.BluminEngine6.Editor.Componants.Camera;
+import org.BluminEngine6.Editor.Rendering.ColliderRenderer;
 import org.BluminEngine6.Editor.Rendering.ImageRenderer;
 import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
@@ -60,7 +61,7 @@ public class ExampleGameobject extends BluminBehaviour {
     @Override
     public void Awake() {
         //Model ourm = new Model(ResourceBatch.GetMesh(0, Application.getCoreResources().getRoot().getFolder(0)), new Material());
-        ourm2 = ResourceBatch.GetModel(0, Application.getCoreResources().getRoot().getFolder(1));
+        ourm2 = ResourceBatch.GetModel(1, Application.getCoreResources().getRoot().getFolder(1));
         /*try {
             ourm.SaveToFile("Cube", Application.getTempFolder().getAbsolutePath());
             ourm2.SaveToFile("Dragon", Application.getTempFolder().getAbsolutePath());
@@ -71,6 +72,7 @@ public class ExampleGameobject extends BluminBehaviour {
 
         collider = RegisterComponent( new Collider());
         rgBody = RegisterComponent(new RigidBody());
+        RegisterComponent(new ColliderRenderer(collider));
 
     }
 
