@@ -57,7 +57,6 @@ public class ExampleGameobject2 extends BluminBehaviour {
         rgBody = RegisterComponent(new RigidBody(collider));
         //RegisterComponent(new ColliderRenderer(collider));
         rgBody.Mass = 2;
-        Debug.log(transform.position);
     }
 
     @Override
