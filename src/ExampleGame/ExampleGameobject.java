@@ -76,6 +76,7 @@ public class ExampleGameobject extends BluminBehaviour {
         collider = RegisterComponent( new ConvexHullCollider(ourm2));
         rgBody = RegisterComponent(new RigidBody(collider));
         RegisterComponent(new ColliderRenderer(collider));
+        rgBody.setSimType(SimulationType.Static);
 
     }
 
