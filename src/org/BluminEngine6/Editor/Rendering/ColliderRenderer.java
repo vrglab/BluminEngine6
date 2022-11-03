@@ -98,25 +98,10 @@ public class ColliderRenderer extends Component {
         shader.SetUniform("ProjectionMatrix", projection);
         shader.SetUniform("ViewMatrix", view);
 
-        //Set the Textures
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getTexture().getTextureId());
-        shader.SetUniform("material.Texture",  0);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE1);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getDefuseMap().getTextureId());
-        shader.SetUniform("material.diffuse",  1);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE2);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getSpecularMap().getTextureId());
-        shader.SetUniform("material.specular", 2);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE3);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getReflectionsMap().getTextureId());
-        shader.SetUniform("material.ReflectionsMap", 3);
+        shader.SetUniform("DrawTex",  false);
 
 
-        GL11.glDrawElements(GL_LINE_STRIP, model.getModel().getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
+        GL11.glDrawElements(GL_LINE_LOOP, model.getModel().getMesh().getIndecies().length, GL11.GL_UNSIGNED_INT, 0);
 
 
 

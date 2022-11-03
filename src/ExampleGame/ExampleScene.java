@@ -26,21 +26,16 @@ public class ExampleScene extends Scene {
 
     @Override
     public void Update() {
-        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_E)) {
-            ego.Enable();
-        }
-        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_R)) {
-            ego.Disable();
-        }
 
 
-        if(!ego.rgBody.getBody().checkCollideWith(egoo.rgBody.getBody())) {
-            ego.transform.position.x += 0.001f;
-        }
 
-        if(!egoo.rgBody.getBody().checkCollideWith(ego.rgBody.getBody())) {
+
+
+
+
+       /* if(!egoo.rgBody.getBody().checkCollideWith(ego.rgBody.getBody())) {
             egoo.transform.position.x += 0.01f;
-        }
+        }*/
     }
 
     @Override
@@ -50,6 +45,7 @@ public class ExampleScene extends Scene {
 
     @Override
     public void Init() {
+        ego.Disable();
     }
 
     @Override

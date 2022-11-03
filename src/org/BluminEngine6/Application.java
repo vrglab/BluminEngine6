@@ -133,9 +133,11 @@ public class Application {
     }
 
     private static void DestroyTempFolder() {
-        if(tempFolder.listFiles().length > 0) {
-            for (File files: tempFolder.listFiles()) {
-                files.delete();
+        if(tempFolder.listFiles() != null) {
+            if(tempFolder.listFiles().length > 0) {
+                for (File files: tempFolder.listFiles()) {
+                    files.delete();
+                }
             }
         }
         tempFolder.delete();

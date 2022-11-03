@@ -12,10 +12,15 @@ struct Material {
 
 
 uniform Material material;
+uniform bool DrawTex;
 
 
 out vec4 outColor;
 
 void main() {
-    outColor = texture(material.Texture, texCord);
+    if(DrawTex){
+        outColor = texture(material.Texture, texCord);
+    } else {
+        outColor = vec4(1,0,0,1);
+    }
 }

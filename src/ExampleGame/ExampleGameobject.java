@@ -18,6 +18,7 @@ import org.BluminEngine6.Models.Mesh;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Physics.Collision.Collider;
+import org.BluminEngine6.Physics.Collision.ConvexHullCollider;
 import org.BluminEngine6.Physics.Physics;
 import org.BluminEngine6.Physics.RigidBody;
 import org.BluminEngine6.Utils.ResourceBatch;
@@ -60,8 +61,9 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Awake() {
+        transform.position.x = 30;
         //Model ourm = new Model(ResourceBatch.GetMesh(0, Application.getCoreResources().getRoot().getFolder(0)), new Material());
-        ourm2 = ResourceBatch.GetModel(1, Application.getCoreResources().getRoot().getFolder(1));
+        ourm2 = ResourceBatch.GetModel(0, Application.getCoreResources().getRoot().getFolder(1));
         /*try {
             ourm.SaveToFile("Cube", Application.getTempFolder().getAbsolutePath());
             ourm2.SaveToFile("Dragon", Application.getTempFolder().getAbsolutePath());
@@ -70,8 +72,8 @@ public class ExampleGameobject extends BluminBehaviour {
         }*/
         mr = RegisterComponent(new MeshRenderer3D(ourm2));
 
-        collider = RegisterComponent( new Collider());
-        rgBody = RegisterComponent(new RigidBody());
+        collider = RegisterComponent( new ConvexHullCollider(ourm2));
+        rgBody = RegisterComponent(new RigidBody(collider));
         RegisterComponent(new ColliderRenderer(collider));
 
     }

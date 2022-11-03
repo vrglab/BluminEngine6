@@ -120,6 +120,7 @@ public class MeshRenderer3D extends Component {
         }
 */
 
+        shader.SetUniform("DrawTex",  true);
         //Set the Textures
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getMaterial().getTexture().getTextureId());
