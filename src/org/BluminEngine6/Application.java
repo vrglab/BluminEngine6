@@ -115,6 +115,7 @@ public class Application {
             glCullFace(GL_BACK);
 
             Start.Invoke();
+            display.showWindow();
             while (!glfwWindowShouldClose(display.getWindow()) ) {
                 Update.Invoke();
                 renderer.OnRender();

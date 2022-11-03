@@ -21,6 +21,7 @@ import org.BluminEngine6.Physics.Collision.Collider;
 import org.BluminEngine6.Physics.Collision.ConvexHullCollider;
 import org.BluminEngine6.Physics.Physics;
 import org.BluminEngine6.Physics.RigidBody;
+import org.BluminEngine6.Physics.SimulationType;
 import org.BluminEngine6.Utils.ResourceBatch;
 import org.lwjgl.glfw.GLFW;
 
@@ -61,7 +62,7 @@ public class ExampleGameobject extends BluminBehaviour {
 
     @Override
     public void Awake() {
-        transform.position.x = 30;
+        transform.position.y = -5;
         //Model ourm = new Model(ResourceBatch.GetMesh(0, Application.getCoreResources().getRoot().getFolder(0)), new Material());
         ourm2 = ResourceBatch.GetModel(0, Application.getCoreResources().getRoot().getFolder(1));
         /*try {
@@ -74,6 +75,7 @@ public class ExampleGameobject extends BluminBehaviour {
 
         collider = RegisterComponent( new ConvexHullCollider(ourm2));
         rgBody = RegisterComponent(new RigidBody(collider));
+        rgBody.setSimType(SimulationType.Static);
         RegisterComponent(new ColliderRenderer(collider));
 
     }

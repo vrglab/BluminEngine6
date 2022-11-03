@@ -100,6 +100,10 @@ public class Display{
         }
         GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
         glfwMakeContextCurrent(window);
+    }
+
+    public void showWindow() {
+
         glfwSwapInterval(1);
         glfwShowWindow(window);
     }

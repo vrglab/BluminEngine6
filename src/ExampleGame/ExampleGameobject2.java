@@ -7,6 +7,7 @@ import org.BluminEngine6.Editor.Rendering.ColliderRenderer;
 import org.BluminEngine6.Editor.Rendering.MeshRenderer3D;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
 import org.BluminEngine6.Legacy.Utils.Input;
+import org.BluminEngine6.Legacy.Utils.Math.Vector3;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Physics.Collision.BoxCollider;
@@ -37,6 +38,9 @@ public class ExampleGameobject2 extends BluminBehaviour {
             as.Stop();
         }
 
+        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_3)) {
+            rgBody.SetPosition(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+        }
     }
 
     @Override
@@ -51,13 +55,13 @@ public class ExampleGameobject2 extends BluminBehaviour {
 
     @Override
     public void Awake() {
-        transform.position.x = 10;
         ourm2 = ResourceBatch.GetModel(0, Application.getCoreResources().getRoot().getFolder(1));
         mr = RegisterComponent(new MeshRenderer3D(ourm2));
         collider = RegisterComponent( new BoxCollider(ourm2));
         rgBody = RegisterComponent(new RigidBody(collider));
         //RegisterComponent(new ColliderRenderer(collider));
-
+        rgBody.Mass = 2;
+        Debug.log(transform.position);
     }
 
     @Override

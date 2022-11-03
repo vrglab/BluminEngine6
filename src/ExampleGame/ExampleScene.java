@@ -22,20 +22,14 @@ public class ExampleScene extends Scene {
         RegisterGameObject(physics);
         RegisterGameObject(ego);
         RegisterGameObject(egoo);
+
     }
 
     @Override
     public void Update() {
-
-
-
-
-
-
-
-       /* if(!egoo.rgBody.getBody().checkCollideWith(ego.rgBody.getBody())) {
-            egoo.transform.position.x += 0.01f;
-        }*/
+        if(Input.Instance().WasPressed(GLFW.GLFW_KEY_1)) {
+            physics.Enable();
+        }
     }
 
     @Override
@@ -45,12 +39,11 @@ public class ExampleScene extends Scene {
 
     @Override
     public void Init() {
-        ego.Disable();
+        physics.Disable();
     }
 
     @Override
     public void Awake() {
-
     }
 
     @Override
