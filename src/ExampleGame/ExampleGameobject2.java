@@ -37,10 +37,6 @@ public class ExampleGameobject2 extends BluminBehaviour {
         if(Input.Instance().WasPressed(GLFW.GLFW_KEY_Y)) {
             as.Stop();
         }
-
-        if(Input.Instance().WasHeld(GLFW.GLFW_KEY_3)) {
-            rgBody.SetPosition(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
-        }
     }
 
     @Override
@@ -55,7 +51,7 @@ public class ExampleGameobject2 extends BluminBehaviour {
 
     @Override
     public void Awake() {
-        ourm2 = ResourceBatch.GetModel(0, Application.getCoreResources().getRoot().getFolder(1));
+        ourm2 = ResourceBatch.GetModel(1, Application.getCoreResources().getRoot().getFolder(1));
         mr = RegisterComponent(new MeshRenderer3D(ourm2));
         collider = RegisterComponent( new BoxCollider(ourm2));
         rgBody = RegisterComponent(new RigidBody(collider));
