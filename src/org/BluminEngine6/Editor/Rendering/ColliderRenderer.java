@@ -5,6 +5,7 @@ import org.BluminEngine6.Editor.Componants.Transform;
 import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
 import org.BluminEngine6.Legacy.Utils.Math.Matrix;
 import org.BluminEngine6.Legacy.Utils.Math.Vector3;
+import org.BluminEngine6.Models.Mesh;
 import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.Component;
 import org.BluminEngine6.Physics.Collision.Collider;
@@ -14,6 +15,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
+
+import javax.vecmath.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_BLEND;
@@ -49,31 +52,17 @@ public class ColliderRenderer extends Component {
 
     private void DrawWithoutIndecies() {
         shader.Run();
-
+        GL30.glBindVertexArray(model.getModel().getMesh().getVao());
         shader.SetUniform("transform", Matrix.transform(Parent.transform));
         shader.SetUniform("ProjectionMatrix", SceneMannager.getCurrentScene().mainCamera.getProjectionMatrix());
         shader.SetUniform("ViewMatrix",
                 Matrix.view(SceneMannager.getCurrentScene().mainCamera.transform.position,
                         SceneMannager.getCurrentScene().mainCamera.transform.rotation));
 
-        //Set the Textures
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getTexture().getTextureId());
-        shader.SetUniform("material.Texture",  0);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE1);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getDefuseMap().getTextureId());
-        shader.SetUniform("material.diffuse",  1);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE2);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getSpecularMap().getTextureId());
-        shader.SetUniform("material.specular", 2);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE3);
-        GL13.glBindTexture(GL13.GL_TEXTURE_2D, model.getModel().getMaterial().getReflectionsMap().getTextureId());
-        shader.SetUniform("material.ReflectionsMap", 3);
+        shader.SetUniform("DrawTex",  false);
 
         GL11.glDrawArrays(GL_LINE_STRIP, 0, model.getModel().getMesh().getVertecies().length);
+        GL30.glBindVertexArray(0);
         shader.Stop();
     }
 

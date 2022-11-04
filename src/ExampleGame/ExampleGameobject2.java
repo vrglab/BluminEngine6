@@ -12,6 +12,7 @@ import org.BluminEngine6.Models.Model;
 import org.BluminEngine6.Object.BluminBehaviour;
 import org.BluminEngine6.Physics.Collision.BoxCollider;
 import org.BluminEngine6.Physics.Collision.Collider;
+import org.BluminEngine6.Physics.Collision.ConvexHullCollider;
 import org.BluminEngine6.Physics.Physics;
 import org.BluminEngine6.Physics.RigidBody;
 import org.BluminEngine6.Utils.ResourceBatch;
@@ -55,7 +56,7 @@ public class ExampleGameobject2 extends BluminBehaviour {
         mr = RegisterComponent(new MeshRenderer3D(ourm2));
         collider = RegisterComponent( new BoxCollider(ourm2));
         rgBody = RegisterComponent(new RigidBody(collider));
-        //RegisterComponent(new ColliderRenderer(collider));
+        RegisterComponent(new ColliderRenderer(collider));
         rgBody.Mass = 2;
     }
 

@@ -22,7 +22,6 @@ public class ExampleScene extends Scene {
         RegisterGameObject(physics);
         RegisterGameObject(ego);
         RegisterGameObject(egoo);
-
     }
 
     @Override
