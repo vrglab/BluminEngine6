@@ -1,25 +1,14 @@
 package org.BluminEngine6;
 
-import org.BluminEngine6.Archives.Archive;
-import org.BluminEngine6.Archives.ArchiveMannager;
+import org.BluminEngine6.Archives.*;
 import org.BluminEngine6.Editor.Rendering.MasterRenderer;
-import org.BluminEngine6.Editor.SceneManagment.SceneMannager;
+import org.BluminEngine6.Legacy.Utils.*;
 import org.BluminEngine6.Legacy.Utils.Debuging.Debug;
-import org.BluminEngine6.Legacy.Utils.EventSystem.Action;
-import org.BluminEngine6.Legacy.Utils.EventSystem.IAction;
-import org.BluminEngine6.Legacy.Utils.Input;
-import org.BluminEngine6.Legacy.Utils.Metadata;
-import org.BluminEngine6.Legacy.Utils.Utils;
-import org.BluminEngine6.Legacy.Utils.Version;
+import org.BluminEngine6.Legacy.Utils.EventSystem.*;
 import org.BluminEngine6.Object.Tags.TagMannager;
-import org.BluminEngine6.Render.Display;
-import org.BluminEngine6.Render.DisplayMode;
-import org.BluminEngine6.Render.Renderer;
-import org.BluminEngine6.Render.Resolution;
+import org.BluminEngine6.Render.*;
 import org.apache.commons.io.FilenameUtils;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLCapabilities;
+import org.lwjgl.opengl.*;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -28,7 +17,6 @@ import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_BACK;
 
 public class Application {
     public static Action<IAction> Update = new Action<>();
@@ -110,7 +98,7 @@ public class Application {
 
             Awake.Invoke();
 
-            GL11.glEnable(GL11.GL_DEPTH_TEST);
+            glEnable(GL11.GL_DEPTH_TEST);
             glEnable(GL_CULL_FACE);
             glCullFace(GL_BACK);
 
